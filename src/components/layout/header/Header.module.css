@@ -1,0 +1,94 @@
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: var(--z-sticky);
+  width: 100%;
+  background: var(--color-primary);
+}
+
+.inner {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding-inline: var(--container-padding-mobile);
+
+  height: 72px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* RIGHT BLOCK */
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+@media (min-width: 768px) {
+  .inner {
+    padding-inline: var(--container-padding-tablet);
+  }
+}
+
+@media (min-width: 1440px) {
+  .inner {
+    padding-inline: var(--container-padding-desktop);
+  }
+}
+
+/* LOGO */
+
+.logo img {
+  height: 40px;
+  width: auto;
+}
+
+/* NAV */
+
+.nav {
+  display: flex;
+  gap: var(--space-5);
+}
+
+.nav a {
+  font-size: var(--font-size-sm);
+  color: var(--color-white);
+  opacity: 0.9;
+  transition: opacity var(--transition-base);
+}
+
+.nav a:hover {
+  opacity: 1;
+}
+
+/* ACTIONS */
+
+.actions {
+  display: flex;
+  align-items: center;
+}
+
+/* TOGGLE */
+
+.toggle {
+  width: 40px;
+  height: 22px;
+  border-radius: 999px;
+  background: var(--color-secondary);
+
+  position: relative;
+}
+
+.toggleThumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--color-white);
+
+  position: absolute;
+  top: 2px;
+  left: 2px;
+}

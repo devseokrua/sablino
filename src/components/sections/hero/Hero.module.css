@@ -1,0 +1,93 @@
+.hero {
+  position: relative;
+  width: 100%;
+  height: min(100svh, 900px);
+  max-height: 900px;
+  overflow: hidden;
+  background-image: url('/hero.webp');
+  background-size: cover;
+  background-position: center;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: max(
+    var(--content-width-lg),
+    calc((100vw - var(--container-max-width)) / 2 + var(--content-width-lg))
+  );
+  background: linear-gradient(
+    to right,
+    rgba(255, 253, 249, 0.9) 0%,
+    rgba(255, 253, 249, 0.75) 60%,
+    rgba(255, 253, 249, 0) 100%
+  );
+  pointer-events: none;
+}
+
+.stage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  max-width: var(--container-max-width);
+  height: 100%;
+  margin-inline: auto;
+}
+
+.panel {
+  position: relative;
+  width: var(--content-width-lg);
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.content {
+  width: var(--content-width-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transform: translateY(calc(72px / 2));
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-title);
+  font-size: clamp(64px, 6vw, 78px);
+  line-height: var(--line-height-tight);
+  color: var(--color-primary);
+}
+
+.divider {
+  width: var(--content-width-sm);
+  height: var(--stroke-lg);
+  margin-top: var(--space-7);
+  margin-bottom: var(--space-7);
+  background: var(--color-primary);
+}
+
+.description {
+  width: var(--content-width-sm);
+  margin: 0 0 calc(var(--space-7) * 2);
+  font-family: var(--font-body);
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-muted);
+}
+
+.callButton {
+  width: var(--content-width-sm);
+  height: 60px;
+  font-size: var(--font-size-body-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+.icon {
+  width: 22px;
+  height: 22px;
+}
