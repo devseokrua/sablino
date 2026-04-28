@@ -1,0 +1,220 @@
+.gallery {
+  width: 100%;
+  padding-block: var(--space-6);
+  background: var(--color-bg-body);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-title);
+  font-size: var(--font-size-heading-lg);
+  line-height: var(--line-height-tight);
+  color: var(--color-primary);
+  text-align: center;
+}
+
+.batches {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  width: 100%;
+}
+
+.batch {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-5);
+  align-items: start;
+}
+
+.sideColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  width: 100%;
+  max-width: 400px;
+  margin-inline: auto;
+}
+
+.centerColumn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 400px;
+  margin-inline: auto;
+}
+
+.photoFrame {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  margin-inline: auto;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.sidePhoto {
+  aspect-ratio: 4 / 3;
+}
+
+.centerPhoto {
+  aspect-ratio: 8 / 11;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-5);
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .batch {
+    grid-template-columns: minmax(180px, 220px) minmax(180px, 220px);
+    gap: var(--space-6);
+    align-items: stretch;
+    justify-content: center;
+  }
+
+  .batch > .sideColumn:first-child {
+    grid-column: 1;
+    grid-row: 1;
+    gap: var(--space-6);
+    max-width: 220px;
+  }
+
+  .batch > .centerColumn {
+    grid-column: 2;
+    grid-row: 1;
+    max-width: 220px;
+    align-items: stretch;
+    justify-content: stretch;
+    align-self: stretch;
+  }
+
+  .batch > .sideColumn:last-child {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(180px, 220px));
+    gap: var(--space-6);
+    width: 100%;
+    max-width: calc(220px * 2 + var(--space-6));
+    justify-content: center;
+  }
+
+  .batch > .sideColumn:last-child .photoFrame {
+    max-width: 220px;
+    margin-inline: 0;
+  }
+
+  .sidePhoto {
+    max-width: 220px;
+    margin-inline: auto;
+  }
+
+  .centerPhoto {
+    width: 100%;
+    max-width: 220px;
+    height: 100%;
+    aspect-ratio: auto;
+    margin-inline: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .batch {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-6);
+    align-items: stretch;
+  }
+
+  .sideColumn,
+  .centerColumn {
+    max-width: 400px;
+    margin-inline: auto;
+    width: 100%;
+  }
+
+  .centerColumn {
+    grid-column: auto;
+    align-self: stretch;
+    align-items: stretch;
+    justify-content: center;
+  }
+
+  .photoFrame {
+    width: 100%;
+    max-width: 400px;
+    margin-inline: auto;
+  }
+
+  .sidePhoto {
+    aspect-ratio: 4 / 3;
+  }
+
+  .centerPhoto {
+    width: 100%;
+    max-width: 400px;
+    height: 100%;
+    aspect-ratio: auto;
+  }
+}
+
+@media (min-width: 1440px) {
+  .gallery {
+    padding-block: 60px;
+  }
+
+  .batch {
+    width: 1312px;
+    margin-inline: auto;
+    grid-template-columns: 400px 400px 400px;
+    gap: 56px;
+    align-items: stretch;
+    justify-items: stretch;
+  }
+
+  .sideColumn {
+    width: 400px;
+    max-width: none;
+    margin-inline: 0;
+    gap: 50px;
+  }
+
+  .centerColumn {
+    width: 400px;
+    max-width: none;
+    margin-inline: 0;
+    height: 650px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .photoFrame {
+    max-width: none;
+    margin-inline: 0;
+  }
+
+  .sidePhoto {
+    width: 400px;
+    height: 300px;
+    aspect-ratio: auto;
+  }
+
+  .centerPhoto {
+    width: 400px;
+    height: 100%;
+    aspect-ratio: auto;
+  }
+}

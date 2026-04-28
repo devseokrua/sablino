@@ -1,0 +1,27 @@
+.section {
+  width: 100%;
+  background: var(--color-bg-body);
+  min-height: 100vh;
+}
+
+.center {
+  min-height: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-title);
+  font-size: var(--font-size-heading-lg);
+  line-height: var(--line-height-tight);
+  color: var(--color-primary);
+  text-align: center;
+}
+
+@media (min-width: 1440px) {
+  .section {
+    min-height: 3450px;
+  }
+}
