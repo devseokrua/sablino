@@ -1,4 +1,4 @@
-import Container from '@/components/layout/container/Container';
+﻿import Container from '@/components/layout/container/Container';
 import Button from '@/components/ui/button/Button';
 import contact from '@/data/contact.json';
 import styles from './Cta.module.css';
@@ -20,7 +20,9 @@ export default function Cta() {
             </p>
 
             <Button className={styles.button} href={primaryPhone.href}>
-              <img src="/phone.svg" alt="" className={styles.icon} />
+              <svg className={styles.icon} aria-hidden="true" focusable="false">
+                <use href="/sprite.svg#icon-phone" />
+              </svg>
               зателефонувати
             </Button>
           </div>

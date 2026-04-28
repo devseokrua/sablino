@@ -28,6 +28,10 @@
   flex-shrink: 0;
 }
 
+.button svg {
+  fill: currentColor;
+}
+
 /* PRIMARY */
 
 .primary {

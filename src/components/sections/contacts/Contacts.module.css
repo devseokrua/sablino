@@ -55,19 +55,13 @@
   width: 66px;
   height: 66px;
   flex-shrink: 0;
+  display: block;
+  color: var(--color-primary);
+  fill: currentColor;
 }
 
 .phoneIcon {
-  display: block;
-  background-color: var(--color-primary);
-  -webkit-mask-image: url('/phone.svg');
-  mask-image: url('/phone.svg');
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  mask-position: center;
-  -webkit-mask-size: contain;
-  mask-size: contain;
+  color: var(--color-primary);
 }
 
 .addressText {

@@ -17,7 +17,9 @@ export default function Contacts() {
                 rel="noopener noreferrer"
                 className={`${styles.card} ${styles.addressCard}`}
               >
-                <img src="/pin.svg" alt="" className={styles.icon} />
+                <svg className={styles.icon} aria-hidden="true" focusable="false">
+                  <use href="/sprite.svg#icon-pin" />
+                </svg>
                 <address className={styles.addressText}>
                   {contact.address.lines.map((line) => (
                     <span key={line}>{line}</span>
@@ -26,10 +28,13 @@ export default function Contacts() {
               </a>
 
               <div className={`${styles.card} ${styles.phonesCard}`}>
-                <span
+                <svg
                   aria-hidden="true"
+                  focusable="false"
                   className={`${styles.icon} ${styles.phoneIcon}`}
-                />
+                >
+                  <use href="/sprite.svg#icon-phone" />
+                </svg>
                 <ul className={styles.phoneList}>
                   {contact.phones.map((phone) => (
                     <li key={phone.href}>

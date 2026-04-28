@@ -52,18 +52,25 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+
   color: var(--color-bg-body);
-  transition: color var(--transition-base);
+  transition:
+    color var(--transition-base),
+    transform var(--transition-base);
 }
 
 .socialLink:hover,
 .socialLink:focus-visible {
-  color: var(--color-secondary);
+  color: var(--color-bg-accent);
+  transform: translateY(-3px) scale(1.08);
 }
 
 .socialIcon {
   width: 40px;
   height: 40px;
+  display: block;
+
+  fill: currentColor;
 }
 
 .links {
@@ -71,19 +78,21 @@
 }
 
 .links a {
-  display: inline-block;
+  transition: color var(--transition-base);
   color: var(--color-bg-body);
+  text-decoration: none;
   font-family: var(--font-body);
   font-size: var(--font-size-sm);
   text-align: center;
 }
 
-.links a:first-child {
-  order: 3;
-}
-
-.links a:last-child {
-  order: 4;
+.links a:hover,
+.links a:focus-visible {
+  color: var(--color-bg-accent);
+  text-decoration: underline;
+  text-decoration-color: var(--color-bg-accent);
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
 }
 
 .credit {

@@ -81,9 +81,9 @@ export default function Header() {
             aria-controls="mobile-menu"
             onClick={() => setIsMenuOpen(false)}
           >
-            <span className={styles.burgerLine} />
-            <span className={styles.burgerLine} />
-            <span className={styles.burgerLine} />
+            <svg className={styles.burgerIcon} aria-hidden="true" focusable="false">
+              <use href="/sprite.svg#icon-burger" />
+            </svg>
           </button>
         ) : (
           <button
@@ -94,9 +94,9 @@ export default function Header() {
             aria-controls="mobile-menu"
             onClick={() => setIsMenuOpen(true)}
           >
-            <span className={styles.burgerLine} />
-            <span className={styles.burgerLine} />
-            <span className={styles.burgerLine} />
+            <svg className={styles.burgerIcon} aria-hidden="true" focusable="false">
+              <use href="/sprite.svg#icon-burger" />
+            </svg>
           </button>
         )}
       </div>
@@ -117,8 +117,9 @@ export default function Header() {
               className={styles.modalCloseButton}
               onClick={closeMenu}
             >
-              <span className={styles.modalCloseLine} />
-              <span className={styles.modalCloseLine} />
+              <svg className={styles.closeIcon} aria-hidden="true" focusable="false">
+                <use href="/sprite.svg#icon-close" />
+              </svg>
             </button>
 
             <nav className={styles.modalNav}>

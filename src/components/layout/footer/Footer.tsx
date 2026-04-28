@@ -8,19 +8,19 @@ export default function Footer() {
     {
       key: 'facebook',
       href: contact.socials.facebook.href,
-      icon: '/facebook.svg',
+      iconId: 'icon-facebook',
       ariaLabel: 'Facebook',
     },
     {
       key: 'instagram',
       href: contact.socials.instagram.href,
-      icon: '/instagram.svg',
+      iconId: 'icon-instagram',
       ariaLabel: 'Instagram',
     },
     {
       key: 'telegram',
       href: contact.socials.telegram.href,
-      icon: '/telegram.svg',
+      iconId: 'icon-telegram',
       ariaLabel: 'Telegram',
     },
   ];
@@ -31,9 +31,15 @@ export default function Footer() {
         <div className={styles.inner}>
           <div className={styles.left}>
             <Link href="/" className={styles.logoLink}>
-              <img src="/logo.svg" alt="Садиба «Саблінська»" className={styles.logo} />
+              <img
+                src="/logo.svg"
+                alt="Садиба «Саблінська»"
+                className={styles.logo}
+              />
             </Link>
-            <p className={styles.copy}>© 2026 Садиба «Саблінська». Усі права захищені.</p>
+            <p className={styles.copy}>
+              © 2026 Садиба «Саблінська». Усі права захищені.
+            </p>
           </div>
 
           <div className={styles.center}>
@@ -47,7 +53,13 @@ export default function Footer() {
                   aria-label={social.ariaLabel}
                   className={styles.socialLink}
                 >
-                  <img src={social.icon} alt="" className={styles.socialIcon} />
+                  <svg
+                    className={styles.socialIcon}
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <use href={`/sprite.svg#${social.iconId}`} />
+                  </svg>
                 </a>
               ))}
             </div>
@@ -55,7 +67,11 @@ export default function Footer() {
 
           <div className={styles.right}>
             <nav className={styles.links}>
-              <Link href="/conditions" target="_blank" rel="noopener noreferrer">
+              <Link
+                href="/conditions"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Умови проживання
               </Link>
               <a href="#houses">Переглянути будинки</a>

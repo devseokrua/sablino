@@ -52,7 +52,16 @@
   font-size: var(--font-size-sm);
   color: var(--color-white);
   opacity: 1;
-  transition: opacity var(--transition-base);
+  transition: color var(--transition-base);
+}
+
+.navLink:hover,
+.navLink:focus-visible {
+  color: var(--color-bg-accent);
+  text-decoration: underline;
+  text-decoration-color: var(--color-bg-accent);
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
 }
 
 .toggle {
@@ -77,10 +86,8 @@
   width: 42px;
   height: 42px;
   display: inline-flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 6px;
   border-radius: var(--radius);
   border: none;
   background: none;
@@ -90,14 +97,14 @@
 
 .burgerButton:hover,
 .burgerButton:focus-visible {
-  color: var(--color-secondary);
+  color: var(--color-bg-accent);
 }
 
-.burgerLine {
+.burgerIcon {
   display: block;
   width: 22px;
-  height: 2px;
-  background: currentColor;
+  height: 18px;
+  fill: currentColor;
 }
 
 .modalRoot {
@@ -150,22 +157,14 @@
 
 .modalCloseButton:hover,
 .modalCloseButton:focus-visible {
-  color: var(--color-secondary);
+  color: var(--color-bg-accent);
 }
 
-.modalCloseLine {
-  position: absolute;
+.closeIcon {
   width: 18px;
-  height: 2px;
-  background: currentColor;
-}
-
-.modalCloseLine:first-child {
-  transform: rotate(45deg);
-}
-
-.modalCloseLine:last-child {
-  transform: rotate(-45deg);
+  height: 18px;
+  display: block;
+  fill: currentColor;
 }
 
 .modalNav {
@@ -183,6 +182,16 @@
   font-size: var(--font-size-sm);
   line-height: var(--line-height-base);
   text-align: center;
+  transition: color var(--transition-base);
+}
+
+.modalNavLink:hover,
+.modalNavLink:focus-visible {
+  color: var(--color-bg-accent);
+  text-decoration: underline;
+  text-decoration-color: var(--color-bg-accent);
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
 }
 
 .modalDivider {
