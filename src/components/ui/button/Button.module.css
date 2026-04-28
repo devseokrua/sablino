@@ -14,10 +14,18 @@
   border: 1px solid var(--color-primary);
 
   font-family: var(--font-body);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-body-lg);
+  line-height: var(--line-height-base);
 
   cursor: pointer;
   transition: all var(--transition-base);
+}
+
+.button img,
+.button svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
 }
 
 /* PRIMARY */

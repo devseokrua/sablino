@@ -1,0 +1,163 @@
+.footer {
+  width: 100%;
+  background: var(--color-primary);
+  color: var(--color-white);
+  padding-block: var(--space-6);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  text-align: center;
+}
+
+.left,
+.center,
+.right {
+  display: contents;
+}
+
+.logoLink {
+  display: inline-flex;
+  order: 1;
+}
+
+.logo {
+  width: auto;
+  height: 44px;
+}
+
+.copy {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-base);
+  order: 5;
+  text-align: center;
+}
+
+.socials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-6);
+  order: 2;
+  max-width: 100%;
+}
+
+.socialLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--color-bg-body);
+  transition: color var(--transition-base);
+}
+
+.socialLink:hover,
+.socialLink:focus-visible {
+  color: var(--color-secondary);
+}
+
+.socialIcon {
+  width: 40px;
+  height: 40px;
+}
+
+.links {
+  display: contents;
+}
+
+.links a {
+  display: inline-block;
+  color: var(--color-bg-body);
+  font-family: var(--font-body);
+  font-size: var(--font-size-sm);
+  text-align: center;
+}
+
+.links a:first-child {
+  order: 3;
+}
+
+.links a:last-child {
+  order: 4;
+}
+
+.credit {
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-family: var(--font-body);
+  font-size: var(--font-size-xs);
+  order: 6;
+  text-align: center;
+}
+
+.creditLogo {
+  width: auto;
+  height: 14px;
+}
+
+@media (min-width: 768px) {
+  .inner {
+    gap: var(--space-5);
+  }
+}
+
+@media (min-width: 1024px) {
+  .inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    text-align: left;
+    gap: var(--space-6);
+  }
+
+  .left,
+  .center,
+  .right {
+    display: flex;
+    width: auto;
+    min-width: 0;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .left {
+    justify-self: start;
+    align-items: flex-start;
+  }
+
+  .center {
+    justify-self: center;
+    align-items: center;
+  }
+
+  .right {
+    justify-self: end;
+    align-items: flex-end;
+    text-align: right;
+    gap: var(--space-4);
+  }
+
+  .links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: var(--space-3);
+  }
+
+  .credit {
+    justify-content: flex-end;
+  }
+
+  .socials {
+    justify-content: center;
+  }
+}

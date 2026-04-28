@@ -34,7 +34,7 @@ export default function Gallery() {
   };
 
   return (
-    <section className={styles.gallery}>
+    <section id="gallery" className={styles.gallery}>
       <Container>
         <div className={styles.inner}>
           <h2 className={styles.title}>Галерея</h2>

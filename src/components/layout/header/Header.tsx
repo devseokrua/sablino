@@ -1,7 +1,50 @@
+﻿'use client';
+
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import styles from './Header.module.css';
 
+const links = [
+  { href: '/#houses', label: 'Будинки' },
+  { href: '/conditions', label: 'Умови проживання' },
+  { href: '/#gallery', label: 'Галерея' },
+  { href: '/#contacts', label: 'Контакти' },
+];
+
 export default function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const conditionsHref = '/conditions';
+
+  useEffect(() => {
+    if (!isMenuOpen) {
+      return;
+    }
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsMenuOpen(false);
+      }
+    };
+
+    const onResize = () => {
+      if (window.innerWidth >= 1024) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.body.classList.add('header-menu-open');
+    window.addEventListener('keydown', onKeyDown);
+    window.addEventListener('resize', onResize);
+
+    return () => {
+      document.body.classList.remove('header-menu-open');
+      window.removeEventListener('keydown', onKeyDown);
+      window.removeEventListener('resize', onResize);
+    };
+  }, [isMenuOpen]);
+
+  const closeMenu = () => setIsMenuOpen(false);
+
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
@@ -11,17 +54,98 @@ export default function Header() {
 
         <div className={styles.right}>
           <nav className={styles.nav}>
-            <a href="#houses">Будинки</a>
-            <a href="#rules">Умови проживання</a>
-            <a href="#gallery">Галерея</a>
-            <a href="#contacts">Контакти</a>
+            {links.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={styles.navLink}
+                target={link.href === conditionsHref ? '_blank' : undefined}
+                rel={link.href === conditionsHref ? 'noopener noreferrer' : undefined}
+              >
+                {link.label}
+              </Link>
+            ))}
           </nav>
 
           <div className={styles.toggle}>
             <div className={styles.toggleThumb} />
           </div>
         </div>
+
+        {isMenuOpen ? (
+          <button
+            type="button"
+            className={styles.burgerButton}
+            aria-label="Закрити меню"
+            aria-expanded="true"
+            aria-controls="mobile-menu"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            <span className={styles.burgerLine} />
+            <span className={styles.burgerLine} />
+            <span className={styles.burgerLine} />
+          </button>
+        ) : (
+          <button
+            type="button"
+            className={styles.burgerButton}
+            aria-label="Відкрити меню"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+            onClick={() => setIsMenuOpen(true)}
+          >
+            <span className={styles.burgerLine} />
+            <span className={styles.burgerLine} />
+            <span className={styles.burgerLine} />
+          </button>
+        )}
       </div>
+
+      {isMenuOpen && (
+        <div className={styles.modalRoot}>
+          <button
+            type="button"
+            aria-label="Закрити меню"
+            className={styles.modalOverlay}
+            onClick={closeMenu}
+          />
+
+          <div id="mobile-menu" className={styles.modalPanel} role="dialog" aria-modal="true">
+            <button
+              type="button"
+              aria-label="Закрити меню"
+              className={styles.modalCloseButton}
+              onClick={closeMenu}
+            >
+              <span className={styles.modalCloseLine} />
+              <span className={styles.modalCloseLine} />
+            </button>
+
+            <nav className={styles.modalNav}>
+              {links.map((link) => (
+                <Link
+                  key={`modal-${link.href}`}
+                  href={link.href}
+                  className={styles.modalNavLink}
+                  target={link.href === conditionsHref ? '_blank' : undefined}
+                  rel={link.href === conditionsHref ? 'noopener noreferrer' : undefined}
+                  onClick={closeMenu}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+
+            <div className={styles.modalDivider} />
+
+            <div className={styles.modalToggleWrap}>
+              <div className={styles.toggle}>
+                <div className={styles.toggleThumb} />
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 }

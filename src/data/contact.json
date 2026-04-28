@@ -26,10 +26,22 @@
       "isPrimary": false
     }
   ],
+  "map": {
+    "href": "https://maps.app.goo.gl/h2mxs6s7QH18J79v5",
+    "embedSrc": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2237.66650061054!2d32.65566272557383!3d48.64697255037962!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d08938d4c9172f%3A0x2667f10f8e0dcc70!2z0JHQsNC30LAg0LLRltC00L_QvtGH0LjQvdC60YMgItCh0LDQtNC40LHQsCDQodCw0LHQu9GW0L3RgdGM0LrQsCI!5e1!3m2!1suk!2spl!4v1777393110627!5m2!1suk!2spl"
+  },
   "socials": {
     "facebook": {
       "label": "Facebook",
       "href": "https://www.facebook.com/usadbasablinskaya"
+    },
+    "instagram": {
+      "label": "Instagram",
+      "href": "https://www.instagram.com/sadibasablinska/"
+    },
+    "telegram": {
+      "label": "Telegram",
+      "href": "https://t.me/+380967566091"
     }
   }
 }
