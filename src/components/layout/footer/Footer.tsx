@@ -67,14 +67,8 @@ export default function Footer() {
 
           <div className={styles.right}>
             <nav className={styles.links}>
-              <Link
-                href="/conditions"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Умови проживання
-              </Link>
-              <a href="#houses">Переглянути будинки</a>
+              <Link href="/conditions">Умови проживання</Link>
+              <Link href="/#houses">Переглянути будинки</Link>
             </nav>
 
             <a

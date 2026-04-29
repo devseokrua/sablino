@@ -13,7 +13,6 @@ const links = [
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const conditionsHref = '/conditions';
 
   useEffect(() => {
     if (!isMenuOpen) {
@@ -55,13 +54,7 @@ export default function Header() {
         <div className={styles.right}>
           <nav className={styles.nav}>
             {links.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={styles.navLink}
-                target={link.href === conditionsHref ? '_blank' : undefined}
-                rel={link.href === conditionsHref ? 'noopener noreferrer' : undefined}
-              >
+              <Link key={link.href} href={link.href} className={styles.navLink}>
                 {link.label}
               </Link>
             ))}
@@ -128,8 +121,6 @@ export default function Header() {
                   key={`modal-${link.href}`}
                   href={link.href}
                   className={styles.modalNavLink}
-                  target={link.href === conditionsHref ? '_blank' : undefined}
-                  rel={link.href === conditionsHref ? 'noopener noreferrer' : undefined}
                   onClick={closeMenu}
                 >
                   {link.label}
