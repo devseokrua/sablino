@@ -54,6 +54,14 @@
   align-items: stretch;
 }
 
+@media (min-width: 1376px) {
+  .grid {
+    grid-template-columns: 600px 600px;
+    gap: 48px;
+    justify-content: center;
+  }
+}
+
 .leftColumn,
 .rightColumn {
   display: flex;
@@ -78,11 +86,7 @@
   color: var(--color-muted);
   font-size: var(--font-size-sm);
   line-height: var(--line-height-relaxed);
-}
-
-.leftColumn strong {
-  color: var(--color-secondary);
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-regular);
 }
 
 .leftColumn ul,

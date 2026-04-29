@@ -36,7 +36,6 @@ type ConditionsData = {
   title: string;
   intro: {
     paragraphs: string[];
-    highlightPhrases?: string[];
     territoryTitle: string;
     territoryItems: string[];
     kitchenTitle: string;
@@ -48,33 +47,12 @@ type ConditionsData = {
 
 const data = conditionsData as ConditionsData;
 
-function escapeRegExp(value: string) {
-  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-}
-
-function renderHighlightedText(text: string, phrases: string[]) {
-  if (!phrases.length) {
-    return text;
-  }
-
-  const sortedPhrases = [...phrases].sort((a, b) => b.length - a.length);
-  const pattern = new RegExp(
-    `(${sortedPhrases.map((phrase) => escapeRegExp(phrase)).join('|')})`,
-    'g'
-  );
-  const phraseSet = new Set(phrases);
-
-  return text.split(pattern).map((part, index) =>
-    phraseSet.has(part) ? <strong key={`${part}-${index}`}>{part}</strong> : part
-  );
-}
-
 function renderSection(section: ConditionsSection) {
   return (
     <section key={section.id} className={styles.infoBlock}>
       <div className={styles.infoHeader}>
         <svg className={styles.icon} aria-hidden="true" focusable="false">
-          <use href={`#${section.iconId}`} />
+          <use href={`/sprite.svg#${section.iconId}`} />
         </svg>
         <h2>{section.title}</h2>
       </div>
@@ -94,7 +72,11 @@ function renderSection(section: ConditionsSection) {
           </div>
         ))
       ) : section.type === 'paragraphs' ? (
-        section.items.map((item) => <p key={item}>{item}</p>)
+        <ul>
+          {section.items.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
       ) : (
         <ul>
           {section.items.map((item) => (
@@ -120,15 +102,8 @@ export default function ConditionsPage() {
           <section className={styles.panel}>
             <div className={styles.grid}>
               <div className={styles.leftColumn}>
-                {data.intro.paragraphs.map((paragraph, index) => (
-                  <p key={paragraph}>
-                    {index === 0
-                      ? renderHighlightedText(
-                          paragraph,
-                          data.intro.highlightPhrases ?? []
-                        )
-                      : paragraph}
-                  </p>
+                {data.intro.paragraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
                 ))}
 
                 <p>{data.intro.territoryTitle}</p>
