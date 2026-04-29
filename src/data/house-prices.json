@@ -1,0 +1,46 @@
+{
+  "currency": "UAH",
+  "defaultLabel": "грн/доба",
+  "prices": {
+    "gulyai-hata": {
+      "value": "2000",
+      "label": "грн/доба",
+      "draft": true
+    },
+    "hnizdechko": {
+      "value": "1000",
+      "label": "грн/доба",
+      "draft": true
+    },
+    "plyazhna-1": {
+      "value": "1500",
+      "label": "грн/доба",
+      "draft": true
+    },
+    "plyazhna-2": {
+      "value": "1500",
+      "label": "грн/доба",
+      "draft": true
+    },
+    "soniachna": {
+      "value": "2000",
+      "label": "грн/доба",
+      "draft": true
+    },
+    "tykha": {
+      "value": "2500",
+      "label": "грн/доба",
+      "draft": true
+    },
+    "altanka-velyka": {
+      "value": "500–800",
+      "label": "грн/доба",
+      "draft": true
+    },
+    "altanky-mali": {
+      "value": "300–500",
+      "label": "грн/доба",
+      "draft": true
+    }
+  }
+}

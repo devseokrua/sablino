@@ -1,0 +1,121 @@
+{
+  "title": "Будинки",
+  "items": [
+    {
+      "id": "gulyai-hata",
+      "slug": "gulyai-hata",
+      "priceId": "gulyai-hata",
+      "type": "house",
+      "title": "Гуляй хата",
+      "coverImage": "/images/houses/gulyai-hata/cover.webp",
+      "summaryLines": [
+        ["До 6 осіб", "3 спальні"],
+        ["Велика тераса", "Кухня"],
+        ["Мангал та альтанка"]
+      ],
+      "buttonLabel": "детальніше",
+      "draft": true
+    },
+    {
+      "id": "hnizdechko",
+      "slug": "hnizdechko",
+      "priceId": "hnizdechko",
+      "type": "house",
+      "title": "Гніздечко",
+      "coverImage": "/images/houses/hnizdechko/cover.webp",
+      "summaryLines": [
+        ["До 4 осіб", "2 спальні"],
+        ["Тихий будинок", "Кухня"],
+        ["Окрема зона відпочинку"]
+      ],
+      "buttonLabel": "детальніше",
+      "draft": true
+    },
+    {
+      "id": "plyazhna-1",
+      "slug": "plyazhna-1",
+      "priceId": "plyazhna-1",
+      "type": "house",
+      "title": "Пляжна 1",
+      "coverImage": "/images/houses/plyazhna-1/cover.webp",
+      "summaryLines": [
+        ["До 4 осіб", "2 спальні"],
+        ["Біля пляжу", "Кухня"],
+        ["Мангал та альтанка"]
+      ],
+      "buttonLabel": "детальніше",
+      "draft": true
+    },
+    {
+      "id": "plyazhna-2",
+      "slug": "plyazhna-2",
+      "priceId": "plyazhna-2",
+      "type": "house",
+      "title": "Пляжна 2",
+      "coverImage": "/images/houses/plyazhna-2/cover.webp",
+      "summaryLines": [
+        ["До 4 осіб", "2 спальні"],
+        ["Біля пляжу", "Кухня"],
+        ["Окрема альтанка"]
+      ],
+      "buttonLabel": "детальніше",
+      "draft": true
+    },
+    {
+      "id": "soniachna",
+      "slug": "soniachna",
+      "priceId": "soniachna",
+      "type": "house",
+      "title": "Сонячна",
+      "coverImage": "/images/houses/soniachna/cover.webp",
+      "summaryLines": [
+        ["До 6 осіб", "3 спальні"],
+        ["Світлий будинок", "Кухня"],
+        ["Тераса та мангал"]
+      ],
+      "buttonLabel": "детальніше",
+      "draft": true
+    },
+    {
+      "id": "tykha",
+      "slug": "tykha",
+      "priceId": "tykha",
+      "type": "house",
+      "title": "Тиха",
+      "coverImage": "/images/houses/tykha/cover.webp",
+      "summaryLines": [
+        ["До 4 осіб", "2 спальні"],
+        ["Тиха зона", "Кухня"],
+        ["Окрема зона відпочинку"]
+      ],
+      "buttonLabel": "детальніше",
+      "draft": true
+    },
+    {
+      "id": "altanka-velyka",
+      "slug": "altanka-velyka",
+      "priceId": "altanka-velyka",
+      "type": "gazebo",
+      "title": "Альтанка велика",
+      "coverImage": "/images/houses/altanka-velyka/cover.webp",
+      "summaryLines": [
+        ["До 20 осіб"],
+        ["Кам’яний мангал"],
+        ["Будні / вихідні"]
+      ],
+      "buttonLabel": "детальніше",
+      "draft": true
+    },
+    {
+      "id": "altanky-mali",
+      "slug": "altanky-mali",
+      "priceId": "altanky-mali",
+      "type": "gazebo",
+      "title": "Альтанки малі",
+      "coverImage": "/images/houses/altanky-mali/cover.webp",
+      "summaryLines": [["До 10 осіб"], ["Кам’яний мангал"], ["На пляжі"]],
+      "buttonLabel": "детальніше",
+      "draft": true
+    }
+  ]
+}

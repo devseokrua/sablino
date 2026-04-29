@@ -1,0 +1,204 @@
+.card {
+  width: 100%;
+  max-width: 624px;
+  height: 700px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: 450px 72px 178px;
+  overflow: hidden;
+  border: 2px solid var(--color-bg-accent);
+  border-radius: calc(var(--radius) * 2);
+  background: var(--color-bg-light);
+}
+
+.imageWrap {
+  position: relative;
+  width: 100%;
+  height: 450px;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.titleBar {
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 16px;
+  background: var(--color-primary);
+}
+
+.cardTitle {
+  margin: 0;
+  color: var(--color-white);
+  font-family: var(--font-title);
+  font-size: clamp(28px, 2.6vw, 40px);
+  line-height: 1.1;
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+}
+
+.infoPanel {
+  height: 178px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 4px minmax(0, 1fr);
+  column-gap: 32px;
+  align-items: center;
+  background: var(--color-bg-light);
+  padding: 24px 32px;
+  box-sizing: border-box;
+}
+
+.summary {
+  justify-self: center;
+  align-self: center;
+  width: 100%;
+  max-width: 240px;
+  display: grid;
+  gap: 8px;
+  justify-items: center;
+  text-align: center;
+  font-family: var(--font-body);
+  color: var(--color-muted);
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-base);
+}
+
+.summaryLine {
+  margin: 0;
+  font-weight: var(--font-weight-regular);
+}
+
+.separator {
+  color: var(--color-muted);
+}
+
+.divider {
+  width: 4px;
+  height: 112px;
+  justify-self: center;
+  align-self: center;
+  background: var(--color-bg-accent);
+}
+
+.priceBlock {
+  justify-self: center;
+  align-self: center;
+  width: 100%;
+  max-width: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding-left: 0;
+}
+
+.priceBlockCompact {
+  gap: 8px;
+}
+
+.priceValue {
+  color: var(--color-primary);
+  font-family: var(--font-body);
+  font-size: clamp(44px, 4vw, 56px);
+  line-height: 0.9;
+  font-weight: var(--font-weight-bold);
+}
+
+.priceRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 6px;
+}
+
+.priceRowCompact {
+  width: 100%;
+  max-width: 220px;
+  justify-content: center;
+  white-space: nowrap;
+  gap: 6px;
+}
+
+.priceLabel {
+  color: var(--color-primary);
+  font-family: var(--font-body);
+  font-size: var(--font-size-sm);
+  line-height: 1.2;
+  font-weight: var(--font-weight-regular);
+  padding-bottom: 6px;
+}
+
+.priceValueCompact {
+  font-size: clamp(28px, 2.6vw, 36px);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.priceLabelCompact {
+  font-size: var(--font-size-xs);
+  line-height: 1.1;
+  padding-bottom: 4px;
+  white-space: normal;
+}
+
+.cardButton {
+  width: 100%;
+  max-width: 240px;
+}
+
+@media (max-width: 900px) {
+  .card {
+    width: 100%;
+    max-width: 624px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 1200px) {
+  .summary {
+    font-size: var(--font-size-md);
+  }
+}
+
+@media (max-width: 600px) {
+  .card {
+    height: auto;
+    grid-template-rows: 280px 64px auto;
+  }
+
+  .imageWrap {
+    height: 280px;
+  }
+
+  .titleBar {
+    height: 64px;
+  }
+
+  .cardTitle {
+    font-size: clamp(24px, 7vw, 30px);
+  }
+
+  .infoPanel {
+    height: auto;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .priceBlock {
+    padding-left: 0;
+  }
+
+  .summary {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-base);
+  }
+}
