@@ -2,7 +2,51 @@ import Link from 'next/link';
 import conditionsData from '@/data/conditions.json';
 import styles from './ConditionsPage.module.css';
 
-type ConditionsSection = (typeof conditionsData.sections)[number];
+type ConditionsGroup = {
+  title: string;
+  subtitle?: string;
+  items: string[];
+};
+
+type BaseSection = {
+  id: string;
+  title: string;
+  iconId: string;
+};
+
+type ParagraphSection = BaseSection & {
+  type: 'paragraphs';
+  items: string[];
+};
+
+type ListSection = BaseSection & {
+  type: 'list';
+  items: string[];
+};
+
+type GroupsSection = BaseSection & {
+  type: 'groups';
+  groups: ConditionsGroup[];
+};
+
+type ConditionsSection = ParagraphSection | ListSection | GroupsSection;
+
+type ConditionsData = {
+  backLinkLabel: string;
+  title: string;
+  intro: {
+    paragraphs: string[];
+    highlightPhrases?: string[];
+    territoryTitle: string;
+    territoryItems: string[];
+    kitchenTitle: string;
+    kitchenItems: string[];
+    parkingText: string;
+  };
+  sections: ConditionsSection[];
+};
+
+const data = conditionsData as ConditionsData;
 
 function escapeRegExp(value: string) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -68,44 +112,44 @@ export default function ConditionsPage() {
       <main className={styles.main}>
         <div className={styles.container}>
           <Link href="/" className={styles.backLink}>
-            &larr; {conditionsData.backLinkLabel}
+            &larr; {data.backLinkLabel}
           </Link>
 
-          <h1 className={styles.title}>{conditionsData.title}</h1>
+          <h1 className={styles.title}>{data.title}</h1>
 
           <section className={styles.panel}>
             <div className={styles.grid}>
               <div className={styles.leftColumn}>
-                {conditionsData.intro.paragraphs.map((paragraph, index) => (
+                {data.intro.paragraphs.map((paragraph, index) => (
                   <p key={paragraph}>
                     {index === 0
                       ? renderHighlightedText(
                           paragraph,
-                          conditionsData.intro.highlightPhrases ?? []
+                          data.intro.highlightPhrases ?? []
                         )
                       : paragraph}
                   </p>
                 ))}
 
-                <p>{conditionsData.intro.territoryTitle}</p>
+                <p>{data.intro.territoryTitle}</p>
                 <ul>
-                  {conditionsData.intro.territoryItems.map((item) => (
+                  {data.intro.territoryItems.map((item) => (
                     <li key={item}>{item}</li>
                   ))}
                 </ul>
 
-                <p>{conditionsData.intro.kitchenTitle}</p>
+                <p>{data.intro.kitchenTitle}</p>
                 <ul>
-                  {conditionsData.intro.kitchenItems.map((item) => (
+                  {data.intro.kitchenItems.map((item) => (
                     <li key={item}>{item}</li>
                   ))}
                 </ul>
 
-                <p>{conditionsData.intro.parkingText}</p>
+                <p>{data.intro.parkingText}</p>
               </div>
 
               <div className={styles.rightColumn}>
-                {conditionsData.sections.map((section) => renderSection(section))}
+                {data.sections.map((section) => renderSection(section))}
               </div>
             </div>
           </section>
