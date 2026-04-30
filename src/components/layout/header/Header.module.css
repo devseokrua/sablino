@@ -120,16 +120,17 @@
 .modalOverlay {
   position: absolute;
   inset: 0;
-  background: transparent;
-  -webkit-backdrop-filter: none;
-  backdrop-filter: none;
+  background: rgba(247, 244, 238, 0.25);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
 }
 
 .modalPanel {
   position: relative;
   z-index: var(--z-raised);
   width: min(92vw, 440px);
-  background: var(--color-primary);
+  min-height: 400px;
+  background: rgba(79, 122, 91, 0.9);
   border: none;
   border-radius: var(--radius);
   padding: var(--space-6);
@@ -172,14 +173,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-4);
+  gap: var(--space-5);
 }
 
 .modalNavLink,
 .modalNavLink:visited {
   color: var(--color-bg-body);
   font-family: var(--font-body);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-lg);
   line-height: var(--line-height-base);
   text-align: center;
   transition: color var(--transition-base);

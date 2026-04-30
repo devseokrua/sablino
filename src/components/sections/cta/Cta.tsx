@@ -8,7 +8,7 @@ export default function Cta() {
     contact.phones.find((phone) => phone.isPrimary) ?? contact.phones[0];
 
   return (
-    <section className={styles.section}>
+    <section id="cta" className={styles.section}>
       <Container>
         <div className={styles.card}>
           <div className={styles.overlay} />

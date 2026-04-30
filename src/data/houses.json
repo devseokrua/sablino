@@ -9,12 +9,47 @@
       "title": "Гуляй хата",
       "coverImage": "/images/houses/gulyai-hata/cover.webp",
       "summaryLines": [
-        ["До 6 осіб", "3 спальні"],
-        ["Велика тераса", "Кухня"],
-        ["Мангал та альтанка"]
+        ["До 13 осіб", "4 кімнати"],
+        ["Для великої компанії"],
+        ["Альтанка та мангал"]
       ],
       "buttonLabel": "детальніше",
-      "draft": true
+      "draft": true,
+      "details": {
+        "subtitle": "Основні характеристики",
+        "gallery": [
+          "/images/houses/gulyai-hata/cover.webp",
+          "/images/houses/gulyai-hata/01.webp",
+          "/images/houses/gulyai-hata/02.webp",
+          "/images/houses/gulyai-hata/03.webp"
+        ],
+        "features": [
+          {
+            "iconId": "icon-family",
+            "text": "Ідеальна для великої компанії чи сімейного відпочинку"
+          },
+          {
+            "iconId": "icon-guests",
+            "text": "До 13 осіб, 4 кімнати для комфортного розміщення"
+          },
+          {
+            "iconId": "icon-gazebo",
+            "text": "Окрема альтанка"
+          },
+          {
+            "iconId": "icon-grill",
+            "text": "Власний кам’яний мангал"
+          },
+          {
+            "iconId": "icon-wc",
+            "text": "Душ та туалет на дворі"
+          },
+          {
+            "iconId": "icon-kitchen",
+            "text": "На кухні є все необхідне: холодильник, мікрохвильова піч, електроплита, чайник, посуд"
+          }
+        ]
+      }
     },
     {
       "id": "hnizdechko",
@@ -24,72 +59,247 @@
       "title": "Гніздечко",
       "coverImage": "/images/houses/hnizdechko/cover.webp",
       "summaryLines": [
-        ["До 4 осіб", "2 спальні"],
-        ["Тихий будинок", "Кухня"],
+        ["До 4–5 осіб", "1 кімната"],
+        ["Затишний будинок"],
         ["Окрема зона відпочинку"]
       ],
       "buttonLabel": "детальніше",
-      "draft": true
+      "draft": true,
+      "details": {
+        "subtitle": "Основні характеристики",
+        "gallery": [
+          "/images/houses/hnizdechko/cover.webp",
+          "/images/houses/hnizdechko/01.webp",
+          "/images/houses/hnizdechko/02.webp",
+          "/images/houses/hnizdechko/03.webp"
+        ],
+        "features": [
+          {
+            "iconId": "icon-family",
+            "text": "Підходить для невеликої сім’ї або пари"
+          },
+          {
+            "iconId": "icon-guests",
+            "text": "До 4–5 осіб, 1 кімната для розміщення"
+          },
+          {
+            "iconId": "icon-gazebo",
+            "text": "Окрема зона відпочинку біля будинку"
+          },
+          {
+            "iconId": "icon-grill",
+            "text": "Власний кам’яний мангал"
+          },
+          {
+            "iconId": "icon-wc",
+            "text": "Душ та туалет на дворі"
+          },
+          {
+            "iconId": "icon-kitchen",
+            "text": "На кухні є все необхідне: холодильник, мікрохвильова піч, електроплита, чайник, посуд"
+          }
+        ]
+      }
     },
     {
       "id": "plyazhna-1",
       "slug": "plyazhna-1",
       "priceId": "plyazhna-1",
       "type": "house",
-      "title": "Пляжна 1",
+      "title": "Пляжна хата 1",
       "coverImage": "/images/houses/plyazhna-1/cover.webp",
       "summaryLines": [
-        ["До 4 осіб", "2 спальні"],
-        ["Біля пляжу", "Кухня"],
-        ["Мангал та альтанка"]
+        ["До 6 осіб", "1 кімната"],
+        ["Біля пляжу"],
+        ["Альтанка та мангал"]
       ],
       "buttonLabel": "детальніше",
-      "draft": true
+      "draft": true,
+      "details": {
+        "subtitle": "Основні характеристики",
+        "gallery": [
+          "/images/houses/plyazhna-1/cover.webp",
+          "/images/houses/plyazhna-1/01.webp",
+          "/images/houses/plyazhna-1/02.webp",
+          "/images/houses/plyazhna-1/03.webp"
+        ],
+        "features": [
+          {
+            "iconId": "icon-family",
+            "text": "Підходить для відпочинку біля пляжу"
+          },
+          {
+            "iconId": "icon-guests",
+            "text": "До 6 осіб, 1 кімната для розміщення"
+          },
+          {
+            "iconId": "icon-gazebo",
+            "text": "Окрема альтанка"
+          },
+          {
+            "iconId": "icon-grill",
+            "text": "Власний кам’яний мангал"
+          },
+          {
+            "iconId": "icon-wc",
+            "text": "Душ та туалет на дворі"
+          },
+          {
+            "iconId": "icon-kitchen",
+            "text": "На кухні є все необхідне: холодильник, мікрохвильова піч, електроплита, чайник, посуд"
+          }
+        ]
+      }
     },
     {
       "id": "plyazhna-2",
       "slug": "plyazhna-2",
       "priceId": "plyazhna-2",
       "type": "house",
-      "title": "Пляжна 2",
+      "title": "Пляжна хата 2",
       "coverImage": "/images/houses/plyazhna-2/cover.webp",
       "summaryLines": [
-        ["До 4 осіб", "2 спальні"],
-        ["Біля пляжу", "Кухня"],
-        ["Окрема альтанка"]
+        ["До 4 осіб", "1 кімната"],
+        ["Біля пляжу"],
+        ["Окрема зона відпочинку"]
       ],
       "buttonLabel": "детальніше",
-      "draft": true
+      "draft": true,
+      "details": {
+        "subtitle": "Основні характеристики",
+        "gallery": [
+          "/images/houses/plyazhna-2/cover.webp",
+          "/images/houses/plyazhna-2/01.webp",
+          "/images/houses/plyazhna-2/02.webp",
+          "/images/houses/plyazhna-2/03.webp"
+        ],
+        "features": [
+          {
+            "iconId": "icon-family",
+            "text": "Підходить для спокійного відпочинку біля пляжу"
+          },
+          {
+            "iconId": "icon-guests",
+            "text": "До 4 осіб, 1 кімната для розміщення"
+          },
+          {
+            "iconId": "icon-gazebo",
+            "text": "Окрема зона відпочинку біля будинку"
+          },
+          {
+            "iconId": "icon-grill",
+            "text": "Власний кам’яний мангал"
+          },
+          {
+            "iconId": "icon-wc",
+            "text": "Душ та туалет на дворі"
+          },
+          {
+            "iconId": "icon-kitchen",
+            "text": "На кухні є все необхідне: холодильник, мікрохвильова піч, електроплита, чайник, посуд"
+          }
+        ]
+      }
     },
     {
       "id": "soniachna",
       "slug": "soniachna",
       "priceId": "soniachna",
       "type": "house",
-      "title": "Сонячна",
+      "title": "Сонячна хата",
       "coverImage": "/images/houses/soniachna/cover.webp",
       "summaryLines": [
-        ["До 6 осіб", "3 спальні"],
-        ["Світлий будинок", "Кухня"],
-        ["Тераса та мангал"]
+        ["До 8 осіб", "2 кімнати"],
+        ["Для сім’ї або компанії"],
+        ["Альтанка та мангал"]
       ],
       "buttonLabel": "детальніше",
-      "draft": true
+      "draft": true,
+      "details": {
+        "subtitle": "Основні характеристики",
+        "gallery": [
+          "/images/houses/soniachna/cover.webp",
+          "/images/houses/soniachna/01.webp",
+          "/images/houses/soniachna/02.webp",
+          "/images/houses/soniachna/03.webp"
+        ],
+        "features": [
+          {
+            "iconId": "icon-family",
+            "text": "Підходить для сімейного відпочинку або компанії"
+          },
+          {
+            "iconId": "icon-guests",
+            "text": "До 8 осіб, 2 кімнати для комфортного розміщення"
+          },
+          {
+            "iconId": "icon-gazebo",
+            "text": "Окрема альтанка"
+          },
+          {
+            "iconId": "icon-grill",
+            "text": "Власний кам’яний мангал"
+          },
+          {
+            "iconId": "icon-wc",
+            "text": "Душ та туалет на дворі"
+          },
+          {
+            "iconId": "icon-kitchen",
+            "text": "На кухні є все необхідне: холодильник, мікрохвильова піч, електроплита, чайник, посуд"
+          }
+        ]
+      }
     },
     {
       "id": "tykha",
       "slug": "tykha",
       "priceId": "tykha",
       "type": "house",
-      "title": "Тиха",
+      "title": "Тиха хата",
       "coverImage": "/images/houses/tykha/cover.webp",
       "summaryLines": [
-        ["До 4 осіб", "2 спальні"],
-        ["Тиха зона", "Кухня"],
-        ["Окрема зона відпочинку"]
+        ["До 11 осіб", "2 кімнати"],
+        ["Будиночок на 3 особи"],
+        ["Альтанка та мангал"]
       ],
       "buttonLabel": "детальніше",
-      "draft": true
+      "draft": true,
+      "details": {
+        "subtitle": "Основні характеристики",
+        "gallery": [
+          "/images/houses/tykha/cover.webp",
+          "/images/houses/tykha/01.webp",
+          "/images/houses/tykha/02.webp",
+          "/images/houses/tykha/03.webp"
+        ],
+        "features": [
+          {
+            "iconId": "icon-family",
+            "text": "Підходить для великої компанії або сімейного відпочинку"
+          },
+          {
+            "iconId": "icon-guests",
+            "text": "До 11 осіб, 2 кімнати та окремий будиночок на 3 особи"
+          },
+          {
+            "iconId": "icon-gazebo",
+            "text": "Окрема альтанка"
+          },
+          {
+            "iconId": "icon-grill",
+            "text": "Власний кам’яний мангал"
+          },
+          {
+            "iconId": "icon-wc",
+            "text": "Душ та туалет на дворі"
+          },
+          {
+            "iconId": "icon-kitchen",
+            "text": "На кухні є все необхідне: холодильник, мікрохвильова піч, електроплита, чайник, посуд"
+          }
+        ]
+      }
     },
     {
       "id": "altanka-velyka",
@@ -113,7 +323,11 @@
       "type": "gazebo",
       "title": "Альтанки малі",
       "coverImage": "/images/houses/altanky-mali/cover.webp",
-      "summaryLines": [["До 10 осіб"], ["Кам’яний мангал"], ["На пляжі"]],
+      "summaryLines": [
+        ["До 10 осіб"],
+        ["Кам’яний мангал"],
+        ["На пляжі"]
+      ],
       "buttonLabel": "детальніше",
       "draft": true
     }

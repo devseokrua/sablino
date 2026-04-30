@@ -5,32 +5,60 @@
     "gulyai-hata": {
       "value": "2000",
       "label": "грн/доба",
-      "draft": true
+      "includedGuestsText": "при розміщенні до 8 осіб",
+      "extraGuest": {
+        "value": "250",
+        "label": "грн/доба",
+        "text": "за кожного додаткового гостя"
+      },
+      "draft": false
     },
     "hnizdechko": {
       "value": "1000",
       "label": "грн/доба",
-      "draft": true
+      "includedGuestsText": "",
+      "extraGuest": null,
+      "draft": false
     },
     "plyazhna-1": {
       "value": "1500",
       "label": "грн/доба",
-      "draft": true
+      "includedGuestsText": "при розміщенні до 4 осіб",
+      "extraGuest": {
+        "value": "250",
+        "label": "грн/доба",
+        "text": "за кожного додаткового гостя"
+      },
+      "draft": false
     },
     "plyazhna-2": {
       "value": "1500",
       "label": "грн/доба",
-      "draft": true
+      "includedGuestsText": "",
+      "extraGuest": null,
+      "draft": false
     },
     "soniachna": {
       "value": "2000",
       "label": "грн/доба",
-      "draft": true
+      "includedGuestsText": "при розміщенні до 6 осіб",
+      "extraGuest": {
+        "value": "250",
+        "label": "грн/доба",
+        "text": "за кожного додаткового гостя"
+      },
+      "draft": false
     },
     "tykha": {
       "value": "2500",
       "label": "грн/доба",
-      "draft": true
+      "includedGuestsText": "при розміщенні до 8 осіб",
+      "extraGuest": {
+        "value": "250",
+        "label": "грн/доба",
+        "text": "за кожного додаткового гостя"
+      },
+      "draft": false
     },
     "altanka-velyka": {
       "value": "500–800",

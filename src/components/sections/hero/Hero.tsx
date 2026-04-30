@@ -8,7 +8,7 @@ export default function Hero() {
     contact.phones.find((phone) => phone.isPrimary) ?? contact.phones[0];
 
   return (
-    <section className={styles.hero}>
+    <section id="hero" className={styles.hero}>
       <div className={styles.overlay} />
       <div className={styles.stage}>
         <div className={styles.panel}>
