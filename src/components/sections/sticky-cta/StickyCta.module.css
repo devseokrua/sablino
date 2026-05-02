@@ -6,6 +6,7 @@
 }
 
 .mobileBar {
+  display: flex;
   position: fixed;
   left: 20px;
   right: 20px;
@@ -108,7 +109,7 @@
     right: 32px;
     bottom: 32px;
     z-index: 50;
-    display: inline-flex;
+    display: flex;
     width: 60px;
     height: 60px;
     max-width: none;
