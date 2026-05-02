@@ -15,7 +15,7 @@
   font-family: var(--font-title);
   font-size: var(--font-size-heading-lg);
   line-height: var(--line-height-tight);
-  color: var(--color-primary);
+  color: var(--color-title);
   text-align: center;
 }
 

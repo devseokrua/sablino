@@ -16,7 +16,7 @@
   font-family: var(--font-title);
   font-size: var(--font-size-heading-lg);
   line-height: var(--line-height-tight);
-  color: var(--color-primary);
+  color: var(--color-title);
 }
 
 .layout {
@@ -56,12 +56,12 @@
   height: 66px;
   flex-shrink: 0;
   display: block;
-  color: var(--color-primary);
+  color: var(--color-accent-strong);
   fill: currentColor;
 }
 
 .phoneIcon {
-  color: var(--color-primary);
+  color: var(--color-accent-strong);
 }
 
 .addressText {

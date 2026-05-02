@@ -19,7 +19,7 @@
   width: 100%;
   max-width: none;
   height: 56px;
-  box-shadow: 0 10px 24px rgba(53, 89, 71, 0.28);
+  box-shadow: 0 10px 24px var(--color-sticky-ring);
 }
 
 .desktopButton {
@@ -37,7 +37,7 @@
   85%,
   100% {
     transform: scale(1);
-    box-shadow: 0 10px 24px rgba(53, 89, 71, 0.28);
+    box-shadow: 0 10px 24px var(--color-sticky-ring);
   }
 
   90% {
@@ -120,7 +120,7 @@
     transform-origin: center;
     animation: stickyCtaPulse 5s ease-in-out infinite;
     will-change: transform, box-shadow;
-    box-shadow: 0 10px 24px rgba(53, 89, 71, 0.28);
+    box-shadow: 0 10px 24px var(--color-sticky-ring);
   }
 
   .desktopButton::before {
@@ -128,7 +128,7 @@
     position: absolute;
     inset: -8px;
     border-radius: 50%;
-    border: 2px solid rgba(53, 89, 71, 0.28);
+    border: 2px solid var(--color-sticky-ring);
     pointer-events: none;
     animation: stickyCtaRing 5s ease-in-out infinite;
     will-change: transform, opacity;

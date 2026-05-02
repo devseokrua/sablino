@@ -102,7 +102,7 @@
 }
 
 .priceValue {
-  color: var(--color-primary);
+  color: var(--color-accent-strong);
   font-family: var(--font-body);
   font-size: clamp(44px, 4vw, 56px);
   line-height: 0.9;
@@ -125,7 +125,7 @@
 }
 
 .priceLabel {
-  color: var(--color-primary);
+  color: var(--color-accent-strong);
   font-family: var(--font-body);
   font-size: var(--font-size-sm);
   line-height: 1.2;

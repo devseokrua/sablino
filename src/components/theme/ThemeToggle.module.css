@@ -1,0 +1,72 @@
+.toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+
+  width: 64px;
+  height: 32px;
+
+  border: 2px solid var(--color-white);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--color-white);
+
+  cursor: pointer;
+  transition:
+    border-color var(--transition-base),
+    background-color var(--transition-base);
+}
+
+.thumb {
+  position: absolute;
+  top: 50%;
+  left: 2px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 28px;
+  height: 28px;
+
+  border-radius: 50%;
+  color: var(--color-white);
+
+  transform: translateY(-50%);
+  transition:
+    transform var(--transition-base),
+    color var(--transition-base);
+}
+
+.dark .thumb {
+  transform: translate(32px, -50%);
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2.25;
+}
+
+.toggle:hover,
+.toggle:focus-visible {
+  border-color: var(--color-control-hover);
+}
+
+.toggle:focus-visible {
+  outline: 2px solid var(--color-control-hover);
+  outline-offset: 4px;
+}
+
+.toggle:hover .thumb,
+.toggle:focus-visible .thumb {
+  color: var(--color-control-hover);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toggle,
+  .thumb {
+    transition: none;
+  }
+}

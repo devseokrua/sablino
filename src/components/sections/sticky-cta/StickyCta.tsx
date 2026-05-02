@@ -9,13 +9,12 @@ const CONTACTS_HREF = '/#contacts';
 
 export default function StickyCta() {
   const [isHeroVisible, setIsHeroVisible] = useState(true);
-  const [isCtaVisible, setIsCtaVisible] = useState(false);
+  const [hasReachedCta, setHasReachedCta] = useState(false);
 
   useEffect(() => {
     const heroSection = document.getElementById('hero');
-    const ctaSection = document.getElementById('cta');
 
-    if (!heroSection || !ctaSection) {
+    if (!heroSection) {
       return;
     }
 
@@ -27,20 +26,33 @@ export default function StickyCta() {
       setIsHeroVisible(entry.isIntersecting);
     }, observerOptions);
 
-    const ctaObserver = new IntersectionObserver(([entry]) => {
-      setIsCtaVisible(entry.isIntersecting);
-    }, observerOptions);
+    const updateCtaVisibility = () => {
+      const ctaElement = document.getElementById('cta');
+
+      if (!ctaElement) {
+        setHasReachedCta(false);
+        return;
+      }
+
+      const ctaTop = ctaElement.getBoundingClientRect().top;
+      const hasReachedCtaNow = ctaTop <= window.innerHeight;
+
+      setHasReachedCta(hasReachedCtaNow);
+    };
 
     heroObserver.observe(heroSection);
-    ctaObserver.observe(ctaSection);
+    updateCtaVisibility();
+    window.addEventListener('scroll', updateCtaVisibility, { passive: true });
+    window.addEventListener('resize', updateCtaVisibility);
 
     return () => {
       heroObserver.disconnect();
-      ctaObserver.disconnect();
+      window.removeEventListener('scroll', updateCtaVisibility);
+      window.removeEventListener('resize', updateCtaVisibility);
     };
   }, []);
 
-  const showSticky = !isHeroVisible && !isCtaVisible;
+  const showSticky = !isHeroVisible && !hasReachedCta;
 
   if (!showSticky) {
     return null;

@@ -41,7 +41,7 @@
   justify-content: center;
   gap: var(--space-3);
   padding: var(--space-5) var(--space-6);
-  background: rgba(255, 253, 249, 0.72);
+  background: var(--color-surface-overlay);
 }
 
 .title {
@@ -49,7 +49,7 @@
   font-family: var(--font-title);
   font-size: var(--font-size-heading-lg);
   line-height: var(--line-height-tight);
-  color: var(--color-primary);
+  color: var(--color-title);
 }
 
 .description {
