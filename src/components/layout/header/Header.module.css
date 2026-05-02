@@ -64,24 +64,6 @@
   text-decoration-thickness: 1px;
 }
 
-.toggle {
-  width: 40px;
-  height: 22px;
-  border-radius: 999px;
-  background: var(--color-bg-body);
-  position: relative;
-}
-
-.toggleThumb {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: var(--color-primary);
-  position: absolute;
-  top: 2px;
-  left: 2px;
-}
-
 .burgerButton {
   width: 42px;
   height: 42px;
@@ -91,7 +73,7 @@
   border-radius: var(--radius);
   border: none;
   background: none;
-  color: var(--color-bg-body);
+  color: var(--color-white);
   transition: color var(--transition-base);
 }
 
@@ -120,7 +102,7 @@
 .modalOverlay {
   position: absolute;
   inset: 0;
-  background: rgba(247, 244, 238, 0.25);
+  background: var(--color-header-soft-overlay);
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
 }
@@ -130,7 +112,7 @@
   z-index: var(--z-raised);
   width: min(92vw, 440px);
   min-height: 400px;
-  background: rgba(79, 122, 91, 0.9);
+  background: var(--color-header-panel-overlay);
   border: none;
   border-radius: var(--radius);
   padding: var(--space-6);
@@ -149,7 +131,7 @@
   border-radius: var(--radius);
   border: none;
   background: none;
-  color: var(--color-bg-body);
+  color: var(--color-white);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -178,7 +160,7 @@
 
 .modalNavLink,
 .modalNavLink:visited {
-  color: var(--color-bg-body);
+  color: var(--color-white);
   font-family: var(--font-body);
   font-size: var(--font-size-lg);
   line-height: var(--line-height-base);
@@ -198,13 +180,35 @@
 .modalDivider {
   width: min(320px, 100%);
   height: 4px;
-  background: var(--color-bg-body);
+  background: var(--color-white);
 }
 
 .modalToggleWrap {
   width: 100%;
   display: flex;
   justify-content: center;
+}
+
+:global([data-theme='dark']) .navLink:hover,
+:global([data-theme='dark']) .navLink:focus-visible {
+  color: var(--color-control-hover);
+  text-decoration-color: var(--color-control-hover);
+}
+
+:global([data-theme='dark']) .burgerButton:hover,
+:global([data-theme='dark']) .burgerButton:focus-visible {
+  color: var(--color-control-hover);
+}
+
+:global([data-theme='dark']) .modalCloseButton:hover,
+:global([data-theme='dark']) .modalCloseButton:focus-visible {
+  color: var(--color-control-hover);
+}
+
+:global([data-theme='dark']) .modalNavLink:hover,
+:global([data-theme='dark']) .modalNavLink:focus-visible {
+  color: var(--color-control-hover);
+  text-decoration-color: var(--color-control-hover);
 }
 
 :global(body.header-menu-open) {

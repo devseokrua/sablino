@@ -19,7 +19,7 @@
 .backLink {
   display: inline-block;
   margin-bottom: 24px;
-  color: var(--color-primary);
+  color: var(--color-accent-strong);
   font-size: var(--font-size-md);
   line-height: var(--line-height-base);
   transition: color var(--transition-base);
@@ -91,7 +91,7 @@
 }
 
 .priceValue {
-  color: var(--color-primary);
+  color: var(--color-accent-strong);
   font-family: var(--font-body);
   font-size: clamp(32px, 3vw, 44px);
   line-height: 1;
@@ -99,7 +99,7 @@
 }
 
 .priceLabel {
-  color: var(--color-primary);
+  color: var(--color-accent-strong);
   font-family: var(--font-body);
   font-size: var(--font-size-sm);
   line-height: 1.2;
@@ -148,7 +148,7 @@
 
 .periodPriceValue {
   margin: 0;
-  color: var(--color-primary);
+  color: var(--color-accent-strong);
   font-family: var(--font-body);
   font-size: clamp(32px, 3vw, 44px);
   line-height: 1;
@@ -157,7 +157,7 @@
 
 .periodPriceUnit {
   margin: 0;
-  color: var(--color-primary);
+  color: var(--color-accent-strong);
   font-family: var(--font-body);
   font-size: var(--font-size-sm);
   line-height: 1.2;
@@ -174,7 +174,7 @@
 
 .title {
   margin: 0;
-  color: var(--color-primary);
+  color: var(--color-title);
   font-family: var(--font-title);
   font-size: var(--font-size-heading-lg);
   line-height: var(--line-height-tight);
@@ -194,7 +194,7 @@
 .subtitle {
   margin: 0 0 24px;
   text-align: left;
-  color: var(--color-primary);
+  color: var(--color-title);
   font-family: var(--font-body);
   font-size: var(--font-size-lg);
   line-height: var(--line-height-base);
@@ -219,7 +219,7 @@
 .icon {
   width: 32px;
   height: 32px;
-  color: var(--color-primary);
+  color: var(--color-accent-strong);
   fill: currentColor;
 }
 

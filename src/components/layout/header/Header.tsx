@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import ThemeToggle from '@/components/theme/ThemeToggle';
 import styles from './Header.module.css';
 
 const links = [
@@ -60,9 +61,7 @@ export default function Header() {
             ))}
           </nav>
 
-          <div className={styles.toggle}>
-            <div className={styles.toggleThumb} />
-          </div>
+          <ThemeToggle />
         </div>
 
         {isMenuOpen ? (
@@ -131,9 +130,7 @@ export default function Header() {
             <div className={styles.modalDivider} />
 
             <div className={styles.modalToggleWrap}>
-              <div className={styles.toggle}>
-                <div className={styles.toggleThumb} />
-              </div>
+              <ThemeToggle />
             </div>
           </div>
         </div>
