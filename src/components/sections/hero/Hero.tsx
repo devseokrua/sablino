@@ -1,12 +1,8 @@
 ﻿import Container from '@/components/layout/container/Container';
-import Button from '@/components/ui/button/Button';
-import contact from '@/data/contact.json';
+import ResponsiveCallLink from '@/components/ui/responsive-call-link/ResponsiveCallLink';
 import styles from './Hero.module.css';
 
 export default function Hero() {
-  const primaryPhone =
-    contact.phones.find((phone) => phone.isPrimary) ?? contact.phones[0];
-
   return (
     <section id="hero" className={styles.hero}>
       <div className={styles.overlay} />
@@ -27,12 +23,12 @@ export default function Hero() {
                 риболовлі та тихих вихідних.
               </p>
 
-              <Button className={styles.callButton} href={primaryPhone.href}>
+              <ResponsiveCallLink className={styles.callButton}>
                 <svg className={styles.icon} aria-hidden="true" focusable="false">
                   <use href="/sprite.svg#icon-phone" />
                 </svg>
                 зателефонувати
-              </Button>
+              </ResponsiveCallLink>
             </div>
           </Container>
         </div>

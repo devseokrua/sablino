@@ -1,12 +1,8 @@
 ﻿import Container from '@/components/layout/container/Container';
-import Button from '@/components/ui/button/Button';
-import contact from '@/data/contact.json';
+import ResponsiveCallLink from '@/components/ui/responsive-call-link/ResponsiveCallLink';
 import styles from './Cta.module.css';
 
 export default function Cta() {
-  const primaryPhone =
-    contact.phones.find((phone) => phone.isPrimary) ?? contact.phones[0];
-
   return (
     <section id="cta" className={styles.section}>
       <Container>
@@ -19,12 +15,12 @@ export default function Cta() {
               Кілька варіантів для відпочинку на будь-який формат
             </p>
 
-            <Button className={styles.button} href={primaryPhone.href}>
+            <ResponsiveCallLink className={styles.button}>
               <svg className={styles.icon} aria-hidden="true" focusable="false">
                 <use href="/sprite.svg#icon-phone" />
               </svg>
               зателефонувати
-            </Button>
+            </ResponsiveCallLink>
           </div>
         </div>
       </Container>

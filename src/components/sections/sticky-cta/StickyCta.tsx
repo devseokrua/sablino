@@ -5,6 +5,7 @@ import Button from '@/components/ui/button/Button';
 import styles from './StickyCta.module.css';
 
 const PHONE_HREF = 'tel:+380967566091';
+const CONTACTS_HREF = '/#contacts';
 
 export default function StickyCta() {
   const [isHeroVisible, setIsHeroVisible] = useState(true);
@@ -58,7 +59,7 @@ export default function StickyCta() {
 
       <Button
         className={styles.desktopButton}
-        href={PHONE_HREF}
+        href={CONTACTS_HREF}
         aria-label="зателефонувати"
       >
         <svg className={styles.icon} aria-hidden="true" focusable="false">

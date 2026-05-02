@@ -94,6 +94,7 @@
   margin: 0;
   font-family: var(--font-body);
   font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-md);
   color: var(--color-secondary);
   text-align: right;
 }

@@ -5,8 +5,17 @@ import styles from './ConditionsPage.module.css';
 type ConditionsGroup = {
   title: string;
   subtitle?: string;
-  items: string[];
+  items: ConditionsListItem[];
 };
+
+type LinkedListItem = {
+  textBefore: string;
+  linkText: string;
+  href: string;
+  textAfter: string;
+};
+
+type ConditionsListItem = string | LinkedListItem;
 
 type BaseSection = {
   id: string;
@@ -16,12 +25,12 @@ type BaseSection = {
 
 type ParagraphSection = BaseSection & {
   type: 'paragraphs';
-  items: string[];
+  items: ConditionsListItem[];
 };
 
 type ListSection = BaseSection & {
   type: 'list';
-  items: string[];
+  items: ConditionsListItem[];
 };
 
 type GroupsSection = BaseSection & {
@@ -40,12 +49,29 @@ type ConditionsData = {
     territoryItems: string[];
     kitchenTitle: string;
     kitchenItems: string[];
+    waterText: string;
     parkingText: string;
   };
   sections: ConditionsSection[];
 };
 
 const data = conditionsData as ConditionsData;
+
+function renderListItem(item: ConditionsListItem) {
+  if (typeof item === 'string') {
+    return item;
+  }
+
+  return (
+    <>
+      {item.textBefore}
+      <a href={item.href} target="_blank" rel="noopener noreferrer">
+        {item.linkText}
+      </a>
+      {item.textAfter}
+    </>
+  );
+}
 
 function renderSection(section: ConditionsSection) {
   return (
@@ -66,7 +92,9 @@ function renderSection(section: ConditionsSection) {
             ) : null}
             <ul>
               {group.items.map((item) => (
-                <li key={item}>{item}</li>
+                <li key={typeof item === 'string' ? item : item.linkText}>
+                  {renderListItem(item)}
+                </li>
               ))}
             </ul>
           </div>
@@ -74,13 +102,17 @@ function renderSection(section: ConditionsSection) {
       ) : section.type === 'paragraphs' ? (
         <ul>
           {section.items.map((item) => (
-            <li key={item}>{item}</li>
+            <li key={typeof item === 'string' ? item : item.linkText}>
+              {renderListItem(item)}
+            </li>
           ))}
         </ul>
       ) : (
         <ul>
           {section.items.map((item) => (
-            <li key={item}>{item}</li>
+            <li key={typeof item === 'string' ? item : item.linkText}>
+              {renderListItem(item)}
+            </li>
           ))}
         </ul>
       )}
@@ -120,6 +152,7 @@ export default function ConditionsPage() {
                   ))}
                 </ul>
 
+                <p>{data.intro.waterText}</p>
                 <p>{data.intro.parkingText}</p>
               </div>
 

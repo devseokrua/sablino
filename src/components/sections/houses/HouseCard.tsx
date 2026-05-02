@@ -26,7 +26,7 @@ export default function HouseCard({
   const isGazebo = type === 'gazebo';
 
   return (
-    <article className={styles.card}>
+    <article id={`house-${slug}`} className={styles.card}>
       <div className={styles.imageWrap}>
         <Image
           src={coverImage}

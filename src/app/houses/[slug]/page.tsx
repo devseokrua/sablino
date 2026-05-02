@@ -1,8 +1,9 @@
-﻿import Link from 'next/link';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import housesData from '@/data/houses.json';
 import housePricesData from '@/data/house-prices.json';
 import Button from '@/components/ui/button/Button';
+import ResponsiveCallLink from '@/components/ui/responsive-call-link/ResponsiveCallLink';
 import { getHouseGallery } from '@/utils/getHouseGallery';
 import HouseGallery from './HouseGallery';
 import styles from './HouseDetailsPage.module.css';
@@ -50,11 +51,17 @@ type ExtraGuestPrice = {
   text: string;
 };
 
+type PeriodPriceItem = {
+  label: string;
+  value: string;
+};
+
 type PriceItem = {
   value: string;
   label: string;
   includedGuestsText?: string;
   extraGuest?: ExtraGuestPrice | null;
+  periodPrices?: PeriodPriceItem[];
   draft: boolean;
 };
 
@@ -92,41 +99,69 @@ export default async function HouseDetailsPage({ params }: PageProps) {
     <div className={styles.page}>
       <main className={styles.main}>
         <div className={styles.container}>
-          <Link href="/" className={styles.backLink}>
-            &larr; повернутись на головну
+          <Link href={`/#house-${house.slug}`} className={styles.backLink}>
+            &larr; повернутись до будинків
           </Link>
 
           <div className={styles.grid}>
             <section className={styles.left}>
               <HouseGallery images={safeGalleryImages} title={house.title} />
 
-              <div className={styles.priceGrid}>
-                <div
-                  className={`${styles.priceCard} ${
-                    price?.extraGuest ? '' : styles.priceCardSingle
-                  }`}
-                >
-                  <div className={styles.priceRow}>
-                    <span className={styles.priceValue}>{priceValue}</span>
-                    <span className={styles.priceLabel}>{priceLabel}</span>
-                  </div>
+              {price?.periodPrices?.length ? (
+                <div className={styles.periodPriceGrid}>
+                  {price.periodPrices.map((item) => {
+                    const normalizedMatch = item.value.match(
+                      /^(.*?)(?:\s*)грн\s*\/\s*доба$/i,
+                    );
+                    const hasUnit = Boolean(normalizedMatch);
+                    const amount = hasUnit
+                      ? normalizedMatch?.[1].trim() ?? item.value
+                      : item.value;
 
-                  {price?.includedGuestsText ? (
-                    <p className={styles.priceNote}>{price.includedGuestsText}</p>
-                  ) : null}
+                    return (
+                      <div key={item.label} className={styles.periodPriceCard}>
+                        <div className={styles.periodPriceValueRow}>
+                          <p className={styles.periodPriceValue}>{amount}</p>
+                          {hasUnit ? (
+                            <p className={styles.periodPriceUnit}>грн/доба</p>
+                          ) : null}
+                        </div>
+                        <p className={styles.periodPriceLabel}>
+                          {item.label.toLowerCase()}
+                        </p>
+                      </div>
+                    );
+                  })}
                 </div>
-
-                {price?.extraGuest ? (
-                  <div className={styles.priceCard}>
+              ) : (
+                <div className={styles.priceGrid}>
+                  <div
+                    className={`${styles.priceCard} ${
+                      price?.extraGuest ? '' : styles.priceCardSingle
+                    }`}
+                  >
                     <div className={styles.priceRow}>
-                      <span className={styles.priceValue}>+{price.extraGuest.value}</span>
-                      <span className={styles.priceLabel}>{price.extraGuest.label}</span>
+                      <span className={styles.priceValue}>{priceValue}</span>
+                      <span className={styles.priceLabel}>{priceLabel}</span>
                     </div>
 
-                    <p className={styles.priceNote}>{price.extraGuest.text}</p>
+                    {price?.includedGuestsText ? (
+                      <p className={styles.priceNote}>{price.includedGuestsText}</p>
+                    ) : null}
                   </div>
-                ) : null}
-              </div>
+
+                  {price?.extraGuest ? (
+                    <div className={styles.priceCard}>
+                      <div className={styles.priceRow}>
+                        <span className={styles.priceValue}>+{price.extraGuest.value}</span>
+                        <span className={styles.priceLabel}>{price.extraGuest.label}</span>
+                      </div>
+
+                      <p className={styles.priceNote}>{price.extraGuest.text}</p>
+                    </div>
+                  ) : null}
+                </div>
+              )}
             </section>
 
             <section className={styles.right}>
@@ -157,7 +192,7 @@ export default async function HouseDetailsPage({ params }: PageProps) {
                   </div>
 
                   <div className={styles.actions}>
-                    <Button className={styles.actionLink} href="tel:+380967566091">
+                    <ResponsiveCallLink className={styles.actionLink}>
                       <svg
                         className={styles.actionIcon}
                         aria-hidden="true"
@@ -166,7 +201,7 @@ export default async function HouseDetailsPage({ params }: PageProps) {
                         <use href="/sprite.svg#icon-phone" />
                       </svg>
                       зателефонувати
-                    </Button>
+                    </ResponsiveCallLink>
                     <Link href="/conditions" className={styles.actionLink}>
                       <Button type="button">умови проживання</Button>
                     </Link>

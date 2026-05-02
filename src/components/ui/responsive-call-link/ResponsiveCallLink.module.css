@@ -1,0 +1,21 @@
+.link {
+  text-decoration: none;
+}
+
+.mobileLink {
+  display: flex;
+}
+
+.desktopLink {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .mobileLink {
+    display: none;
+  }
+
+  .desktopLink {
+    display: flex;
+  }
+}

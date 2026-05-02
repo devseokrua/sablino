@@ -21,7 +21,7 @@
       "draft": false
     },
     "plyazhna-1": {
-      "value": "1500",
+      "value": "1000",
       "label": "грн/доба",
       "includedGuestsText": "при розміщенні до 4 осіб",
       "extraGuest": {
@@ -32,14 +32,14 @@
       "draft": false
     },
     "plyazhna-2": {
-      "value": "1500",
+      "value": "1000",
       "label": "грн/доба",
       "includedGuestsText": "",
       "extraGuest": null,
       "draft": false
     },
     "soniachna": {
-      "value": "2000",
+      "value": "1500",
       "label": "грн/доба",
       "includedGuestsText": "при розміщенні до 6 осіб",
       "extraGuest": {
@@ -50,7 +50,7 @@
       "draft": false
     },
     "tykha": {
-      "value": "2500",
+      "value": "2000",
       "label": "грн/доба",
       "includedGuestsText": "при розміщенні до 8 осіб",
       "extraGuest": {
@@ -63,11 +63,31 @@
     "altanka-velyka": {
       "value": "500–800",
       "label": "грн/доба",
+      "periodPrices": [
+        {
+          "label": "Будні дні",
+          "value": "500 грн/доба"
+        },
+        {
+          "label": "Вихідні дні",
+          "value": "800 грн/доба"
+        }
+      ],
       "draft": true
     },
     "altanky-mali": {
       "value": "300–500",
       "label": "грн/доба",
+      "periodPrices": [
+        {
+          "label": "Будні дні",
+          "value": "300 грн/доба"
+        },
+        {
+          "label": "Вихідні дні",
+          "value": "500 грн/доба"
+        }
+      ],
       "draft": true
     }
   }
