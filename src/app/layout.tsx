@@ -3,6 +3,7 @@ import { Cormorant_Garamond, Manrope } from 'next/font/google';
 import './globals.css';
 
 import Header from '@/components/layout/header/Header';
+import { SITE_URL } from '@/config/site';
 import ThemeProvider from '@/components/theme/ThemeProvider';
 
 const cormorant = Cormorant_Garamond({
@@ -17,10 +18,8 @@ const manrope = Manrope({
   variable: '--font-body',
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://sablino.vercel.app';
-
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(SITE_URL),
 
   title: {
     default: 'Садиба «Саблінська» — відпочинок біля озера',

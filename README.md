@@ -1,36 +1,110 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Садиба «Саблінська»
 
-## Getting Started
+Адаптивний сайт-візитка заміської садиби.  
+Мета — показати будинки, альтанки, умови проживання, галерею та контакти.
 
-First, run the development server:
+Проєкт не є booking engine: без онлайн-бронювання, кабінету та оплати.
 
-```bash
+## Features
+
+- головна сторінка: Hero, About, Houses, Gallery, CTA, Contacts
+- детальні сторінки будинків та альтанок
+- сторінка “Умови проживання”
+- sticky CTA для швидкого контакту
+- light/dark theme
+- styled loading та 404
+- SEO metadata, `robots.txt`, `sitemap.xml`
+- контент у JSON-файлах
+
+## Tech Stack
+
+- Next.js App Router
+- React
+- TypeScript
+- CSS Modules
+- JSON data files
+- Vercel
+
+## Installation
+
+```sh
+npm install
+cp .env.example .env.local
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Відкрити:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```txt
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Environment
 
-## Learn More
+```env
+NEXT_PUBLIC_SITE_URL=https://sablino.vercel.app
+```
 
-To learn more about Next.js, take a look at the following resources:
+Для локальної розробки:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```env
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Routes
 
-## Deploy on Vercel
+```txt
+/
+/conditions
+/houses/gulyai-hata
+/houses/hnizdechko
+/houses/plyazhna-1
+/houses/plyazhna-2
+/houses/soniachna
+/houses/tykha
+/houses/altanka-velyka
+/houses/altanky-mali
+/robots.txt
+/sitemap.xml
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Project Structure
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```txt
+src/
+├── app/
+│   ├── conditions/
+│   ├── houses/[slug]/
+│   ├── layout.tsx
+│   ├── page.tsx
+│   ├── loading.tsx
+│   ├── not-found.tsx
+│   ├── robots.ts
+│   └── sitemap.ts
+├── components/
+│   ├── common/
+│   ├── layout/
+│   ├── sections/
+│   └── theme/
+├── config/
+├── data/
+├── types/
+└── utils/
+```
+
+## Checks
+
+```sh
+npm run lint
+npx tsc --noEmit
+npm run build
+```
+
+## Deployment
+
+Deploy: Vercel.  
+Перед деплоєм додати `NEXT_PUBLIC_SITE_URL` у Vercel Environment Variables.
+
+## Note
+
+Основний сценарій сайту — ознайомлення з садибою та швидкий контакт через дзвінок або контактну секцію.

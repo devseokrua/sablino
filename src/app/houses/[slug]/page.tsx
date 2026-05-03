@@ -1,8 +1,8 @@
+﻿import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import housesData from '@/data/houses.json';
 import housePricesData from '@/data/house-prices.json';
-import Button from '@/components/ui/button/Button';
 import ResponsiveCallLink from '@/components/ui/responsive-call-link/ResponsiveCallLink';
 import { getHouseGallery } from '@/utils/getHouseGallery';
 import HouseGallery from './HouseGallery';
@@ -74,6 +74,55 @@ type HousePricesData = {
 const houses = housesData as HousesData;
 const prices = housePricesData as HousePricesData;
 
+const fallbackTitle = 'Будинки та альтанки';
+const fallbackDescription =
+  'Огляд будинків, альтанок та варіантів відпочинку в садибі «Саблінська».';
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const house = houses.items.find((item) => item.slug === slug);
+
+  if (!house) {
+    return {
+      title: fallbackTitle,
+      description: fallbackDescription,
+      openGraph: {
+        title: fallbackTitle,
+        description: fallbackDescription,
+        type: 'website',
+        images: ['/og-image.jpg'],
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: fallbackTitle,
+        description: fallbackDescription,
+        images: ['/og-image.jpg'],
+      },
+    };
+  }
+
+  const itemLabel = house.type === 'gazebo' ? 'альтанки' : 'будинку';
+  const title = house.title;
+  const description = `Детальна сторінка ${itemLabel} «${house.title}» для відпочинку в садибі «Саблінська».`;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: 'website',
+      images: ['/og-image.jpg'],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['/og-image.jpg'],
+    },
+  };
+}
+
 export function generateStaticParams() {
   return houses.items.map((house) => ({
     slug: house.slug,
@@ -90,7 +139,7 @@ export default async function HouseDetailsPage({ params }: PageProps) {
   }
 
   const price = prices.prices[house.priceId];
-  const priceValue = price?.value ?? 'Ціну уточнюйте';
+  const priceValue = price?.value ?? 'Р¦С–РЅСѓ СѓС‚РѕС‡РЅСЋР№С‚Рµ';
   const priceLabel = price?.label ?? prices.defaultLabel;
   const galleryImages = getHouseGallery(house.slug);
   const safeGalleryImages = galleryImages.length ? galleryImages : [house.coverImage];
@@ -100,7 +149,7 @@ export default async function HouseDetailsPage({ params }: PageProps) {
       <main className={styles.main}>
         <div className={styles.container}>
           <Link href={`/#house-${house.slug}`} className={styles.backLink}>
-            &larr; повернутись до будинків
+            &larr; РїРѕРІРµСЂРЅСѓС‚РёСЃСЊ РґРѕ Р±СѓРґРёРЅРєС–РІ
           </Link>
 
           <div className={styles.grid}>
@@ -111,7 +160,7 @@ export default async function HouseDetailsPage({ params }: PageProps) {
                 <div className={styles.periodPriceGrid}>
                   {price.periodPrices.map((item) => {
                     const normalizedMatch = item.value.match(
-                      /^(.*?)(?:\s*)грн\s*\/\s*доба$/i,
+                      /^(.*?)(?:\s*)РіСЂРЅ\s*\/\s*РґРѕР±Р°$/i,
                     );
                     const hasUnit = Boolean(normalizedMatch);
                     const amount = hasUnit
@@ -123,7 +172,7 @@ export default async function HouseDetailsPage({ params }: PageProps) {
                         <div className={styles.periodPriceValueRow}>
                           <p className={styles.periodPriceValue}>{amount}</p>
                           {hasUnit ? (
-                            <p className={styles.periodPriceUnit}>грн/доба</p>
+                            <p className={styles.periodPriceUnit}>РіСЂРЅ/РґРѕР±Р°</p>
                           ) : null}
                         </div>
                         <p className={styles.periodPriceLabel}>
@@ -200,10 +249,13 @@ export default async function HouseDetailsPage({ params }: PageProps) {
                       >
                         <use href="/sprite.svg#icon-phone" />
                       </svg>
-                      зателефонувати
+                      Р·Р°С‚РµР»РµС„РѕРЅСѓРІР°С‚Рё
                     </ResponsiveCallLink>
-                    <Link href="/conditions" className={styles.actionLink}>
-                      <Button type="button">умови проживання</Button>
+                    <Link
+                      href="/conditions"
+                      className={`${styles.actionLink} ${styles.actionButtonLink}`}
+                    >
+                      СѓРјРѕРІРё РїСЂРѕР¶РёРІР°РЅРЅСЏ
                     </Link>
                   </div>
                 </>
@@ -211,7 +263,7 @@ export default async function HouseDetailsPage({ params }: PageProps) {
                 <>
                   <h1 className={styles.title}>{house.title}</h1>
                   <p className={styles.placeholder}>
-                    Деталі для цього об’єкта будуть додані пізніше.
+                    Р”РµС‚Р°Р»С– РґР»СЏ С†СЊРѕРіРѕ РѕР±вЂ™С”РєС‚Р° Р±СѓРґСѓС‚СЊ РґРѕРґР°РЅС– РїС–Р·РЅС–С€Рµ.
                   </p>
                 </>
               )}
@@ -224,3 +276,4 @@ export default async function HouseDetailsPage({ params }: PageProps) {
     </div>
   );
 }
+

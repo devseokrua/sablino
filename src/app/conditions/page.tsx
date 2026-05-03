@@ -1,3 +1,4 @@
+﻿import type { Metadata } from 'next';
 import Link from 'next/link';
 import conditionsData from '@/data/conditions.json';
 import styles from './ConditionsPage.module.css';
@@ -56,6 +57,12 @@ type ConditionsData = {
 };
 
 const data = conditionsData as ConditionsData;
+
+export const metadata: Metadata = {
+  title: 'Умови проживання',
+  description:
+    'Правила заїзду, проживання, додаткові послуги та умови відпочинку в садибі «Саблінська».',
+};
 
 function renderListItem(item: ConditionsListItem) {
   if (typeof item === 'string') {
@@ -168,3 +175,4 @@ export default function ConditionsPage() {
     </div>
   );
 }
+
