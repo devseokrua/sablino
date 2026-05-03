@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Container from '@/components/layout/container/Container';
 import styles from './About.module.css';
 
@@ -26,12 +27,12 @@ export default function About() {
             </div>
 
             <div className={styles.imageWrap}>
-              <img
+              <Image
                 src="/about-main.webp"
                 alt="Садиба «Саблінська»"
+                fill
+                sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1439px) 50vw, 656px"
                 className={styles.mainImage}
-                width={656}
-                height={412}
               />
             </div>
           </div>
@@ -43,12 +44,12 @@ export default function About() {
           <div className={styles.cards}>
             {cards.map((card) => (
               <article key={card.caption} className={styles.card}>
-                <img
+                <Image
                   src={card.src}
                   alt={card.caption}
+                  fill
+                  sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1439px) 33vw, 400px"
                   className={styles.cardImage}
-                  width={400}
-                  height={240}
                 />
                 <div className={styles.overlay}>
                   <p className={styles.caption}>{card.caption}</p>

@@ -39,15 +39,15 @@
 }
 
 .imageWrap {
+  position: relative;
   width: 100%;
+  aspect-ratio: 656 / 412;
+  border-radius: var(--radius);
+  overflow: hidden;
 }
 
 .mainImage {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 656 / 412;
   object-fit: cover;
-  border-radius: var(--radius);
 }
 
 .bottom {
@@ -71,8 +71,6 @@
 }
 
 .cardImage {
-  width: 100%;
-  height: 100%;
   object-fit: cover;
 }
 
@@ -155,12 +153,6 @@
   .imageWrap {
     width: 656px;
     height: 412px;
-  }
-
-  .mainImage {
-    width: 656px;
-    height: 412px;
-    aspect-ratio: auto;
   }
 
   .bottom {
