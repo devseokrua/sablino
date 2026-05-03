@@ -49,7 +49,12 @@ export default function Header() {
     <header className={styles.header}>
       <div className={styles.inner}>
         <Link href="/" className={styles.logo}>
-          <img src="/logo.svg" alt="Садиба Саблінська" />
+          <img
+            src="/logo.svg"
+            alt="Садиба Саблінська"
+            width={160}
+            height={40}
+          />
         </Link>
 
         <div className={styles.right}>

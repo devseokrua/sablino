@@ -32,7 +32,7 @@ export default function HouseGallery({ images, title }: HouseGalleryProps) {
                 alt={`${title} - фото ${index + 1}`}
                 fill
                 className={styles.image}
-                sizes="(max-width: 900px) 100vw, 624px"
+                sizes="(max-width: 767px) calc(100vw - 24px), (max-width: 1023px) calc(100vw - 48px), (max-width: 1439px) calc((100vw - 128px) / 2), 624px"
                 priority={index === 0}
               />
             </div>

@@ -25,9 +25,8 @@
 .title {
   margin: 0 0 var(--space-7);
   font-family: var(--font-title);
-  font-size: var(--font-size-display-lg);
+  font-size: clamp(64px, 6vw, 78px);
   line-height: var(--line-height-tight);
-  color: var(--color-white);
 }
 
 .description {

@@ -139,7 +139,7 @@ export default async function HouseDetailsPage({ params }: PageProps) {
   }
 
   const price = prices.prices[house.priceId];
-  const priceValue = price?.value ?? 'Р¦С–РЅСѓ СѓС‚РѕС‡РЅСЋР№С‚Рµ';
+  const priceValue = price?.value ?? 'Ціну уточнюйте';
   const priceLabel = price?.label ?? prices.defaultLabel;
   const galleryImages = getHouseGallery(house.slug);
   const safeGalleryImages = galleryImages.length ? galleryImages : [house.coverImage];
@@ -149,7 +149,7 @@ export default async function HouseDetailsPage({ params }: PageProps) {
       <main className={styles.main}>
         <div className={styles.container}>
           <Link href={`/#house-${house.slug}`} className={styles.backLink}>
-            &larr; РїРѕРІРµСЂРЅСѓС‚РёСЃСЊ РґРѕ Р±СѓРґРёРЅРєС–РІ
+            &larr; повернутись до будинків
           </Link>
 
           <div className={styles.grid}>
@@ -160,7 +160,7 @@ export default async function HouseDetailsPage({ params }: PageProps) {
                 <div className={styles.periodPriceGrid}>
                   {price.periodPrices.map((item) => {
                     const normalizedMatch = item.value.match(
-                      /^(.*?)(?:\s*)РіСЂРЅ\s*\/\s*РґРѕР±Р°$/i,
+                      /^(.*?)(?:\s*)грн\s*\/\s*доба$/i,
                     );
                     const hasUnit = Boolean(normalizedMatch);
                     const amount = hasUnit
@@ -172,7 +172,7 @@ export default async function HouseDetailsPage({ params }: PageProps) {
                         <div className={styles.periodPriceValueRow}>
                           <p className={styles.periodPriceValue}>{amount}</p>
                           {hasUnit ? (
-                            <p className={styles.periodPriceUnit}>РіСЂРЅ/РґРѕР±Р°</p>
+                            <p className={styles.periodPriceUnit}>грн/доба</p>
                           ) : null}
                         </div>
                         <p className={styles.periodPriceLabel}>
@@ -249,13 +249,13 @@ export default async function HouseDetailsPage({ params }: PageProps) {
                       >
                         <use href="/sprite.svg#icon-phone" />
                       </svg>
-                      Р·Р°С‚РµР»РµС„РѕРЅСѓРІР°С‚Рё
+                      зателефонувати
                     </ResponsiveCallLink>
                     <Link
                       href="/conditions"
                       className={`${styles.actionLink} ${styles.actionButtonLink}`}
                     >
-                      СѓРјРѕРІРё РїСЂРѕР¶РёРІР°РЅРЅСЏ
+                      умови проживання
                     </Link>
                   </div>
                 </>
@@ -263,7 +263,7 @@ export default async function HouseDetailsPage({ params }: PageProps) {
                 <>
                   <h1 className={styles.title}>{house.title}</h1>
                   <p className={styles.placeholder}>
-                    Р”РµС‚Р°Р»С– РґР»СЏ С†СЊРѕРіРѕ РѕР±вЂ™С”РєС‚Р° Р±СѓРґСѓС‚СЊ РґРѕРґР°РЅС– РїС–Р·РЅС–С€Рµ.
+                    Деталі для цього об’єкта будуть додані пізніше.
                   </p>
                 </>
               )}

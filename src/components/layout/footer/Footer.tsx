@@ -35,6 +35,8 @@ export default function Footer() {
                 src="/logo.svg"
                 alt="Садиба «Саблінська»"
                 className={styles.logo}
+                width={160}
+                height={40}
               />
             </Link>
             <p className={styles.copy}>
@@ -78,7 +80,13 @@ export default function Footer() {
               className={styles.credit}
             >
               <span>Дизайн та розробка —</span>
-              <img src="/loading.svg" alt="" className={styles.creditLogo} />
+              <img
+                src="/loading.svg"
+                alt=""
+                className={styles.creditLogo}
+                width={5442}
+                height={1041}
+              />
             </a>
           </div>
         </div>

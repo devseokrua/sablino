@@ -30,6 +30,8 @@ export default function About() {
                 src="/about-main.webp"
                 alt="Садиба «Саблінська»"
                 className={styles.mainImage}
+                width={656}
+                height={412}
               />
             </div>
           </div>
@@ -45,6 +47,8 @@ export default function About() {
                   src={card.src}
                   alt={card.caption}
                   className={styles.cardImage}
+                  width={400}
+                  height={240}
                 />
                 <div className={styles.overlay}>
                   <p className={styles.caption}>{card.caption}</p>

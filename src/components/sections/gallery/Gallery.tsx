@@ -49,7 +49,7 @@ export default function Gallery() {
                         src={batch[0].src}
                         alt={batch[0].alt}
                         fill
-                        sizes="(min-width: 1440px) 400px, 100vw"
+                        sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1023px) 220px, (max-width: 1439px) calc((100vw - 112px) / 3), 400px"
                         className={styles.image}
                       />
                     </div>
@@ -61,7 +61,7 @@ export default function Gallery() {
                         src={batch[1].src}
                         alt={batch[1].alt}
                         fill
-                        sizes="(min-width: 1440px) 400px, 100vw"
+                        sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1023px) 220px, (max-width: 1439px) calc((100vw - 112px) / 3), 400px"
                         className={styles.image}
                       />
                     </div>
@@ -75,7 +75,7 @@ export default function Gallery() {
                         src={batch[2].src}
                         alt={batch[2].alt}
                         fill
-                        sizes="(min-width: 1440px) 400px, 100vw"
+                        sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1023px) 220px, (max-width: 1439px) calc((100vw - 112px) / 3), 400px"
                         className={styles.image}
                       />
                     </div>
@@ -89,7 +89,7 @@ export default function Gallery() {
                         src={batch[3].src}
                         alt={batch[3].alt}
                         fill
-                        sizes="(min-width: 1440px) 400px, 100vw"
+                        sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1023px) 220px, (max-width: 1439px) calc((100vw - 112px) / 3), 400px"
                         className={styles.image}
                       />
                     </div>
@@ -101,7 +101,7 @@ export default function Gallery() {
                         src={batch[4].src}
                         alt={batch[4].alt}
                         fill
-                        sizes="(min-width: 1440px) 400px, 100vw"
+                        sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1023px) 220px, (max-width: 1439px) calc((100vw - 112px) / 3), 400px"
                         className={styles.image}
                       />
                     </div>

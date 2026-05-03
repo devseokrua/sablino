@@ -32,7 +32,7 @@ export default function HouseCard({
           src={coverImage}
           alt={title}
           fill
-          sizes="(min-width: 1376px) 624px, (max-width: 600px) calc(100vw - 24px), (max-width: 900px) calc(100vw - 48px), min(100vw - 64px, 1312px)"
+          sizes="(max-width: 600px) calc(100vw - 24px), (max-width: 900px) calc(100vw - 48px), (max-width: 1375px) calc((100vw - 128px) / 2), 624px"
           className={styles.image}
         />
       </div>
