@@ -1,10 +1,22 @@
-﻿import Container from '@/components/layout/container/Container';
+﻿import Image from 'next/image';
+import Container from '@/components/layout/container/Container';
 import ResponsiveCallLink from '@/components/ui/responsive-call-link/ResponsiveCallLink';
 import styles from './Hero.module.css';
 
 export default function Hero() {
   return (
     <section id="hero" className={styles.hero}>
+      <div className={styles.media} aria-hidden="true">
+        <Image
+          src="/hero.webp"
+          alt="Садиба «Саблінська» біля водойми"
+          fill
+          priority
+          fetchPriority="high"
+          sizes="100vw"
+          className={styles.heroImage}
+        />
+      </div>
       <div className={styles.overlay} />
       <div className={styles.stage}>
         <div className={styles.panel}>

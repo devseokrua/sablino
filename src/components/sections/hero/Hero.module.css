@@ -1,18 +1,28 @@
 .hero {
   position: relative;
+  isolation: isolate;
   width: 100%;
-  height: min(100svh, 900px);
-  max-height: 900px;
+  min-height: 100vh;
+  min-height: 100svh;
   overflow: hidden;
-  background-image: url('/hero.webp');
-  background-size: cover;
-  background-position: center;
+}
+
+.media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.heroImage {
+  object-fit: cover;
+  object-position: center;
 }
 
 .overlay {
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 1;
   height: 100%;
   width: max(
     var(--content-width-lg),
@@ -30,6 +40,7 @@
 .stage {
   position: absolute;
   inset: 0;
+  z-index: 2;
   width: 100%;
   max-width: var(--container-max-width);
   height: 100%;
@@ -81,3 +92,4 @@
   width: var(--content-width-sm);
   height: 60px;
 }
+
