@@ -134,6 +134,21 @@ export default function Header() {
 
             <div className={styles.modalDivider} />
 
+            <a
+              href="tel:+380967566091"
+              className={styles.modalCallButton}
+              onClick={closeMenu}
+            >
+              <svg
+                className={styles.modalCallIcon}
+                aria-hidden="true"
+                focusable="false"
+              >
+                <use href="/sprite.svg#icon-phone" />
+              </svg>
+              +38 (096) 756-60-91
+            </a>
+
             <div className={styles.modalToggleWrap}>
               <ThemeToggle />
             </div>

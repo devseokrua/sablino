@@ -189,6 +189,50 @@
   justify-content: center;
 }
 
+.modalCallButton {
+  width: min(320px, 100%);
+  min-height: 52px;
+  border-radius: var(--radius);
+  background: var(--color-bg-body);
+  color: var(--color-secondary);
+  border: none;
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  text-align: center;
+  white-space: nowrap;
+  transition:
+    background-color var(--transition-base),
+    color var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.modalCallButton:hover,
+.modalCallButton:focus-visible {
+  background: var(--color-secondary);
+  color: var(--color-white);
+  border: none;
+}
+
+.modalCallIcon {
+  width: 18px;
+  height: 18px;
+  display: block;
+  fill: currentColor;
+}
+
+:global([data-theme='dark']) .modalCallButton {
+  background: var(--color-muted);
+  color: var(--color-bg-body);
+  border: none;
+}
+
 :global([data-theme='dark']) .navLink:hover,
 :global([data-theme='dark']) .navLink:focus-visible {
   color: var(--color-control-hover);
@@ -209,6 +253,13 @@
 :global([data-theme='dark']) .modalNavLink:focus-visible {
   color: var(--color-control-hover);
   text-decoration-color: var(--color-control-hover);
+}
+
+:global([data-theme='dark']) .modalCallButton:hover,
+:global([data-theme='dark']) .modalCallButton:focus-visible {
+  background: var(--color-bg-body);
+  color: var(--color-muted);
+  border: none;
 }
 
 :global(body.header-menu-open) {

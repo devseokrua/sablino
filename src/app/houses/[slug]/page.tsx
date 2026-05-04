@@ -76,7 +76,7 @@ const prices = housePricesData as HousePricesData;
 
 const fallbackTitle = 'Будинки та альтанки';
 const fallbackDescription =
-  'Огляд будинків, альтанок та варіантів відпочинку в садибі «Саблінська».';
+  'Огляд будинків та альтанок у садибі «Саблінська». Адреса: Кіровоградська область, Суботцівська ОТГ, с. Шаблине, вул. Набережна, 25. Телефон: +38 (096) 756-60-91.';
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
@@ -101,9 +101,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  const itemLabel = house.type === 'gazebo' ? 'альтанки' : 'будинку';
+  const itemLabel = house.type === 'gazebo' ? 'Альтанка' : 'Будинок';
   const title = house.title;
-  const description = `Детальна сторінка ${itemLabel} «${house.title}» для відпочинку в садибі «Саблінська».`;
+  const description = `${itemLabel} «${house.title}» у садибі «Саблінська». Адреса: Кіровоградська область, Суботцівська ОТГ, с. Шаблине, вул. Набережна, 25. Телефон: +38 (096) 756-60-91.`;
 
   return {
     title,
@@ -249,7 +249,7 @@ export default async function HouseDetailsPage({ params }: PageProps) {
                       >
                         <use href="/sprite.svg#icon-phone" />
                       </svg>
-                      зателефонувати
+                      +38 (096) 756-60-91
                     </ResponsiveCallLink>
                     <Link
                       href="/conditions"
