@@ -60,15 +60,33 @@
   }
 }
 
-@keyframes stickyCtaMobilePulse {
-  0%,
-  85%,
-  100% {
-    transform: scale(1);
+@keyframes mobilePhoneRing {
+  0% {
+    transform: scale(1) rotate(0deg);
   }
 
-  90% {
-    transform: scale(1.03);
+  1.8% {
+    transform: scale(1.18) rotate(-8deg);
+  }
+
+  3.6% {
+    transform: scale(1.18) rotate(8deg);
+  }
+
+  5.4% {
+    transform: scale(1.18) rotate(-6deg);
+  }
+
+  7.2% {
+    transform: scale(1.12) rotate(6deg);
+  }
+
+  9.5% {
+    transform: scale(1) rotate(0deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(0deg);
   }
 }
 
@@ -92,9 +110,9 @@
 }
 
 @media (max-width: 1023px) {
-  .mobileButton .icon {
+  .icon {
+    animation: mobilePhoneRing 5000ms ease-in-out infinite;
     transform-origin: center;
-    animation: stickyCtaMobilePulse 5s ease-in-out infinite;
     will-change: transform;
   }
 }
