@@ -31,52 +31,78 @@ function isNotEarlierThanUtcToday(value: string): boolean {
   return value >= todayUtc;
 }
 
-export const bookingSchema = z.object({
-  firstName: z
-    .string()
-    .trim()
-    .min(2, "Ім'я має містити щонайменше 2 символи")
-    .max(50, "Ім'я не може бути довшим за 50 символів")
-    .regex(
-      nameRegex,
-      "Ім'я може містити лише українські або латинські літери, пробіли, апостроф і дефіс"
-    ),
-  lastName: z
-    .string()
-    .trim()
-    .min(2, 'Прізвище має містити щонайменше 2 символи')
-    .max(50, 'Прізвище не може бути довшим за 50 символів')
-    .regex(
-      nameRegex,
-      'Прізвище може містити лише українські або латинські літери, пробіли, апостроф і дефіс'
-    ),
-  phone: z
-    .string()
-    .trim()
-    .min(7, 'Номер телефону має містити щонайменше 7 символів')
-    .max(20, 'Номер телефону не може бути довшим за 20 символів')
-    .regex(
-      phoneRegex,
-      'Номер телефону може містити лише цифри, пробіли та символи + - ( )'
-    ),
-  date: z
-    .string()
-    .trim()
-    .regex(dateRegex, 'Дата має бути у форматі YYYY-MM-DD')
-    .refine(isValidCalendarDate, 'Вкажіть коректну календарну дату')
-    .refine(isNotEarlierThanUtcToday, 'Дата не може бути раніше поточної дати'),
-  comment: z
-    .string()
-    .trim()
-    .max(500, 'Коментар не може бути довшим за 500 символів')
-    .optional()
-    .default(''),
-  website: z
-    .string()
-    .trim()
-    .max(200, 'Поле website не може бути довшим за 200 символів')
-    .optional()
-    .default(''),
-});
+const checkInDateSchema = z
+  .string({ error: 'Оберіть дату заїзду' })
+  .trim()
+  .regex(dateRegex, 'Дата заїзду має бути у форматі YYYY-MM-DD')
+  .refine(isValidCalendarDate, 'Вкажіть коректну дату заїзду')
+  .refine(
+    isNotEarlierThanUtcToday,
+    'Дата заїзду не може бути раніше поточної дати'
+  );
+
+const checkOutDateSchema = z
+  .string({ error: 'Оберіть дату виїзду' })
+  .trim()
+  .regex(dateRegex, 'Дата виїзду має бути у форматі YYYY-MM-DD')
+  .refine(isValidCalendarDate, 'Вкажіть коректну дату виїзду')
+  .refine(
+    isNotEarlierThanUtcToday,
+    'Дата виїзду не може бути раніше поточної дати'
+  );
+
+export const bookingSchema = z
+  .object({
+    firstName: z
+      .string()
+      .trim()
+      .min(2, "Ім'я має містити щонайменше 2 символи")
+      .max(50, "Ім'я не може бути довшим за 50 символів")
+      .regex(
+        nameRegex,
+        "Ім'я може містити лише українські або латинські літери, пробіли, апостроф і дефіс"
+      ),
+    lastName: z
+      .string()
+      .trim()
+      .min(2, 'Прізвище має містити щонайменше 2 символи')
+      .max(50, 'Прізвище не може бути довшим за 50 символів')
+      .regex(
+        nameRegex,
+        'Прізвище може містити лише українські або латинські літери, пробіли, апостроф і дефіс'
+      ),
+    phone: z
+      .string()
+      .trim()
+      .min(7, 'Номер телефону має містити щонайменше 7 символів')
+      .max(20, 'Номер телефону не може бути довшим за 20 символів')
+      .regex(
+        phoneRegex,
+        'Номер телефону може містити лише цифри, пробіли та символи + - ( )'
+      ),
+    checkInDate: checkInDateSchema,
+    checkOutDate: checkOutDateSchema,
+    comment: z
+      .string()
+      .trim()
+      .max(500, 'Коментар не може бути довшим за 500 символів')
+      .optional()
+      .default(''),
+    website: z
+      .string()
+      .trim()
+      .max(200, 'Поле website не може бути довшим за 200 символів')
+      .optional()
+      .default(''),
+  })
+  .superRefine((data, ctx) => {
+    if (data.checkOutDate <= data.checkInDate) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'Дата виїзду має бути пізніше дати заїзду',
+        path: ['checkOutDate'],
+      });
+    }
+  });
 
 export type BookingInput = z.infer<typeof bookingSchema>;

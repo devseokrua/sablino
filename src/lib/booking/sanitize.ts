@@ -8,11 +8,21 @@ export function sanitizeForTelegram(value: string): string {
     .trim();
 }
 
+function formatIsoDateForTelegram(value: string): string {
+  const [year, month, day] = value.split('-');
+  if (!year || !month || !day) {
+    return sanitizeForTelegram(value);
+  }
+
+  return `${day}.${month}.${year}`;
+}
+
 export function formatBookingMessage(data: BookingInput): string {
   const firstName = sanitizeForTelegram(data.firstName);
   const lastName = sanitizeForTelegram(data.lastName);
   const phone = sanitizeForTelegram(data.phone);
-  const date = sanitizeForTelegram(data.date);
+  const checkInDate = sanitizeForTelegram(formatIsoDateForTelegram(data.checkInDate));
+  const checkOutDate = sanitizeForTelegram(formatIsoDateForTelegram(data.checkOutDate));
   const comment = sanitizeForTelegram(data.comment ?? '') || '-';
   const siteUrl = sanitizeForTelegram(process.env.NEXT_PUBLIC_SITE_URL ?? '') || '-';
 
@@ -31,7 +41,8 @@ export function formatBookingMessage(data: BookingInput): string {
     `Ім'я: ${firstName}`,
     `Прізвище: ${lastName}`,
     `Телефон: ${phone}`,
-    `Дата: ${date}`,
+    `Дата заїзду: ${checkInDate}`,
+    `Дата виїзду: ${checkOutDate}`,
     `Коментар: ${comment}`,
     `Сайт: ${siteUrl}`,
     `Створено: ${createdAt}`,
