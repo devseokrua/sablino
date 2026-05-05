@@ -152,7 +152,7 @@ export default function Header() {
               >
                 <use href="/sprite.svg#icon-phone" />
               </svg>
-              +38 (096) 756-60-91
+              (096) 756-60-91
             </a>
 
             <button
@@ -160,6 +160,13 @@ export default function Header() {
               className={styles.modalCallButton}
               onClick={openBookingFromMenu}
             >
+              <svg
+                className={styles.modalCallIcon}
+                aria-hidden="true"
+                focusable="false"
+              >
+                <use href="/sprite.svg#icon-booking" />
+              </svg>
               Забронювати
             </button>
 

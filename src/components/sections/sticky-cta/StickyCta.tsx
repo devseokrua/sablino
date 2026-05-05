@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import BookingModal from '@/components/booking/BookingModal';
 import Button from '@/components/ui/button/Button';
 import styles from './StickyCta.module.css';
 
@@ -10,6 +11,7 @@ const CONTACTS_HREF = '/#contacts';
 export default function StickyCta() {
   const [isHeroVisible, setIsHeroVisible] = useState(true);
   const [hasReachedCta, setHasReachedCta] = useState(false);
+  const [isBookingOpen, setIsBookingOpen] = useState(false);
 
   useEffect(() => {
     const heroSection = document.getElementById('hero');
@@ -54,31 +56,76 @@ export default function StickyCta() {
 
   const showSticky = !isHeroVisible && !hasReachedCta;
 
-  if (!showSticky) {
+  if (!showSticky && !isBookingOpen) {
     return null;
   }
 
   return (
-    <div className={styles.root}>
-      <div className={styles.mobileBar}>
-        <Button className={styles.mobileButton} href={PHONE_HREF}>
-          <svg className={styles.icon} aria-hidden="true" focusable="false">
-            <use href="/sprite.svg#icon-phone" />
-          </svg>
-          +38 (096) 756-60-91
-        </Button>
-      </div>
+    <>
+      {showSticky ? (
+        <div className={styles.root}>
+          <div className={styles.mobileBar}>
+            <Button className={styles.mobileButton} href={PHONE_HREF}>
+              <svg
+                className={`${styles.icon} ${styles.phoneIcon}`}
+                aria-hidden="true"
+                focusable="false"
+              >
+                <use href="/sprite.svg#icon-phone" />
+              </svg>
+              (096) 756-60-91
+            </Button>
+            <Button
+              type="button"
+              className={styles.mobileButton}
+              onClick={() => setIsBookingOpen(true)}
+            >
+              <svg
+                className={`${styles.icon} ${styles.bookingIcon}`}
+                aria-hidden="true"
+                focusable="false"
+              >
+                <use href="/sprite.svg#icon-booking" />
+              </svg>
+              Забронювати
+            </Button>
+          </div>
 
-      <Button
-        className={styles.desktopButton}
-        href={CONTACTS_HREF}
-        aria-label="зателефонувати"
-      >
-        <svg className={styles.icon} aria-hidden="true" focusable="false">
-          <use href="/sprite.svg#icon-phone" />
-        </svg>
-        <span className={styles.srOnly}>зателефонувати</span>
-      </Button>
-    </div>
+          <div className={styles.desktopActions}>
+            <Button
+              className={`${styles.desktopButton} ${styles.phoneDesktopButton}`}
+              href={CONTACTS_HREF}
+              aria-label="Перейти до контактів"
+            >
+              <svg
+                className={`${styles.icon} ${styles.phoneIcon}`}
+                aria-hidden="true"
+                focusable="false"
+              >
+                <use href="/sprite.svg#icon-phone" />
+              </svg>
+              <span className={styles.srOnly}>Перейти до контактів</span>
+            </Button>
+            <Button
+              type="button"
+              className={`${styles.desktopButton} ${styles.bookingDesktopButton}`}
+              aria-label="Відкрити форму бронювання"
+              onClick={() => setIsBookingOpen(true)}
+            >
+              <svg
+                className={`${styles.icon} ${styles.bookingIcon}`}
+                aria-hidden="true"
+                focusable="false"
+              >
+                <use href="/sprite.svg#icon-booking" />
+              </svg>
+              <span className={styles.srOnly}>Забронювати</span>
+            </Button>
+          </div>
+        </div>
+      ) : null}
+
+      <BookingModal isOpen={isBookingOpen} onClose={() => setIsBookingOpen(false)} />
+    </>
   );
 }

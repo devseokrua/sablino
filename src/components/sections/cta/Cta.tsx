@@ -21,10 +21,13 @@ export default function Cta() {
                 <svg className={styles.icon} aria-hidden="true" focusable="false">
                   <use href="/sprite.svg#icon-phone" />
                 </svg>
-                +38 (096) 756-60-91
+                (096) 756-60-91
               </ResponsiveCallLink>
 
               <BookingModalTrigger className={styles.button}>
+                <svg className={styles.icon} aria-hidden="true" focusable="false">
+                  <use href="/sprite.svg#icon-booking" />
+                </svg>
                 Забронювати
               </BookingModalTrigger>
             </div>
