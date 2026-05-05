@@ -1,14 +1,14 @@
 ﻿'use client';
 
-import { ChangeEvent, FormEvent, useMemo, useState } from 'react';
+import { ChangeEvent, FormEvent, useMemo, useRef, useState } from 'react';
 import { DayPicker, type DateRange } from 'react-day-picker';
 import { uk } from 'react-day-picker/locale';
 
+import Button from '@/components/ui/button/Button';
 import styles from './BookingForm.module.css';
 
 type FormData = {
-  firstName: string;
-  lastName: string;
+  name: string;
   phone: string;
   comment: string;
   website: string;
@@ -20,8 +20,7 @@ type Status = {
 } | null;
 
 const initialFormData: FormData = {
-  firstName: '',
-  lastName: '',
+  name: '',
   phone: '',
   comment: '',
   website: '',
@@ -63,6 +62,7 @@ export default function BookingForm() {
   const [selectedRange, setSelectedRange] = useState<DateRange | undefined>();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState<Status>(null);
+  const commentTextareaRef = useRef<HTMLTextAreaElement | null>(null);
 
   const today = useMemo(() => stripTime(new Date()), []);
 
@@ -71,6 +71,12 @@ export default function BookingForm() {
   ) => {
     const { name, value } = event.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleCommentChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    handleChange(event);
+    event.currentTarget.style.height = 'auto';
+    event.currentTarget.style.height = `${event.currentTarget.scrollHeight}px`;
   };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -97,8 +103,7 @@ export default function BookingForm() {
       }
 
       const payload = {
-        firstName: formData.firstName,
-        lastName: formData.lastName,
+        name: formData.name,
         phone: formData.phone,
         checkInDate: toYyyyMmDd(checkInDate),
         checkOutDate: toYyyyMmDd(checkOutDate),
@@ -125,6 +130,9 @@ export default function BookingForm() {
         setStatus({ type: 'success', message: SUCCESS_MESSAGE });
         setFormData((prev) => ({ ...initialFormData, website: prev.website }));
         setSelectedRange(undefined);
+        if (commentTextareaRef.current) {
+          commentTextareaRef.current.style.height = '';
+        }
         return;
       }
 
@@ -150,42 +158,24 @@ export default function BookingForm() {
     ? selectedRange.to
       ? `${toDdMmYyyy(selectedRange.from)} - ${toDdMmYyyy(selectedRange.to)}`
       : `${toDdMmYyyy(selectedRange.from)} - ...`
-    : 'Оберіть дати заїзду та виїзду';
+    : '';
 
   return (
     <form className={styles.form} onSubmit={handleSubmit} noValidate>
-      <div className={styles.namesRow}>
-        <div className={styles.fieldGroup}>
-          <label className={styles.label} htmlFor="firstName">
-            Ім’я
-          </label>
-          <input
-            className={styles.input}
-            id="firstName"
-            name="firstName"
-            type="text"
-            autoComplete="given-name"
-            value={formData.firstName}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className={styles.fieldGroup}>
-          <label className={styles.label} htmlFor="lastName">
-            Прізвище
-          </label>
-          <input
-            className={styles.input}
-            id="lastName"
-            name="lastName"
-            type="text"
-            autoComplete="family-name"
-            value={formData.lastName}
-            onChange={handleChange}
-            required
-          />
-        </div>
+      <div className={styles.fieldGroup}>
+        <label className={styles.label} htmlFor="name">
+          Ім’я та прізвище
+        </label>
+        <input
+          className={styles.input}
+          id="name"
+          name="name"
+          type="text"
+          autoComplete="name"
+          value={formData.name}
+          onChange={handleChange}
+          required
+        />
       </div>
 
       <div className={styles.fieldGroup}>
@@ -205,7 +195,10 @@ export default function BookingForm() {
       </div>
 
       <div className={styles.fieldGroup}>
-        <p className={styles.label}>Дати бронювання</p>
+        <p className={styles.label}>
+          Дати бронювання{' '}
+          <span className={styles.labelHint}>(оберіть дати заїзду та виїзду)</span>
+        </p>
         <div className={styles.calendarWrap}>
           <DayPicker
             mode="range"
@@ -245,7 +238,9 @@ export default function BookingForm() {
             }}
           />
         </div>
-        <p className={styles.rangeSummary}>{rangeSummary}</p>
+        {rangeSummary ? (
+          <p className={styles.rangeSummary}>{rangeSummary}</p>
+        ) : null}
       </div>
 
       <div className={styles.fieldGroup}>
@@ -253,12 +248,13 @@ export default function BookingForm() {
           Коментар
         </label>
         <textarea
+          ref={commentTextareaRef}
           className={styles.textarea}
           id="comment"
           name="comment"
-          rows={5}
+          rows={2}
           value={formData.comment}
-          onChange={handleChange}
+          onChange={handleCommentChange}
           maxLength={500}
         />
       </div>
@@ -276,9 +272,9 @@ export default function BookingForm() {
         />
       </div>
 
-      <button className={styles.submitButton} type="submit" disabled={isSubmitting}>
+      <Button className={styles.submitButton} type="submit" disabled={isSubmitting}>
         {isSubmitting ? 'Надсилання...' : 'Надіслати заявку'}
-      </button>
+      </Button>
 
       {status ? (
         <p

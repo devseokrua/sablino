@@ -8,23 +8,12 @@ export function sanitizeForTelegram(value: string): string {
     .trim();
 }
 
-function formatIsoDateForTelegram(value: string): string {
-  const [year, month, day] = value.split('-');
-  if (!year || !month || !day) {
-    return sanitizeForTelegram(value);
-  }
-
-  return `${day}.${month}.${year}`;
-}
-
 export function formatBookingMessage(data: BookingInput): string {
-  const firstName = sanitizeForTelegram(data.firstName);
-  const lastName = sanitizeForTelegram(data.lastName);
+  const name = sanitizeForTelegram(data.name);
   const phone = sanitizeForTelegram(data.phone);
-  const checkInDate = sanitizeForTelegram(formatIsoDateForTelegram(data.checkInDate));
-  const checkOutDate = sanitizeForTelegram(formatIsoDateForTelegram(data.checkOutDate));
+  const checkInDate = sanitizeForTelegram(data.checkInDate);
+  const checkOutDate = sanitizeForTelegram(data.checkOutDate);
   const comment = sanitizeForTelegram(data.comment ?? '') || '-';
-  const siteUrl = sanitizeForTelegram(process.env.NEXT_PUBLIC_SITE_URL ?? '') || '-';
 
   const createdAt = new Intl.DateTimeFormat('uk-UA', {
     timeZone: 'Europe/Kyiv',
@@ -38,13 +27,11 @@ export function formatBookingMessage(data: BookingInput): string {
 
   return [
     'Нова заявка на бронювання',
-    `Ім'я: ${firstName}`,
-    `Прізвище: ${lastName}`,
+    `Ім’я та прізвище: ${name}`,
     `Телефон: ${phone}`,
     `Дата заїзду: ${checkInDate}`,
     `Дата виїзду: ${checkOutDate}`,
     `Коментар: ${comment}`,
-    `Сайт: ${siteUrl}`,
     `Створено: ${createdAt}`,
   ].join('\n');
 }
