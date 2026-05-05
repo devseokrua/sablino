@@ -149,6 +149,10 @@ export default function Header() {
               +38 (096) 756-60-91
             </a>
 
+            <button type="button" className={styles.modalCallButton}>
+              Забронювати
+            </button>
+
             <div className={styles.modalToggleWrap}>
               <ThemeToggle />
             </div>

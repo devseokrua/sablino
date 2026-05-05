@@ -88,6 +88,13 @@
   color: #3a3d3b;
 }
 
+.actions {
+  width: var(--content-width-sm);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+}
+
 .callButton {
   width: var(--content-width-sm);
   height: 60px;
@@ -102,5 +109,13 @@
       rgba(255, 253, 249, 0.7) 50%,
       rgba(255, 253, 249, 0.8) 100%
     );
+  }
+}
+
+@media (min-width: 1024px) {
+  .actions {
+    width: calc((var(--content-width-sm) * 2) + var(--space-4));
+    grid-template-columns: var(--content-width-sm) var(--content-width-sm);
+    gap: var(--space-4);
   }
 }
