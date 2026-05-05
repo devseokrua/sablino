@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import BookingModal from '@/components/booking/BookingModal';
 import ThemeToggle from '@/components/theme/ThemeToggle';
 import styles from './Header.module.css';
 
@@ -14,6 +15,7 @@ const links = [
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isBookingOpen, setIsBookingOpen] = useState(false);
 
   useEffect(() => {
     if (!isMenuOpen) {
@@ -44,6 +46,10 @@ export default function Header() {
   }, [isMenuOpen]);
 
   const closeMenu = () => setIsMenuOpen(false);
+  const openBookingFromMenu = () => {
+    setIsMenuOpen(false);
+    setIsBookingOpen(true);
+  };
 
   return (
     <header className={styles.header}>
@@ -149,7 +155,11 @@ export default function Header() {
               +38 (096) 756-60-91
             </a>
 
-            <button type="button" className={styles.modalCallButton}>
+            <button
+              type="button"
+              className={styles.modalCallButton}
+              onClick={openBookingFromMenu}
+            >
               Забронювати
             </button>
 
@@ -159,6 +169,11 @@ export default function Header() {
           </div>
         </div>
       )}
+
+      <BookingModal
+        isOpen={isBookingOpen}
+        onClose={() => setIsBookingOpen(false)}
+      />
     </header>
   );
 }

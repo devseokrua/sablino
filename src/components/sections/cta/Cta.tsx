@@ -1,6 +1,6 @@
 ﻿import Container from '@/components/layout/container/Container';
 import ResponsiveCallLink from '@/components/ui/responsive-call-link/ResponsiveCallLink';
-import Button from '@/components/ui/button/Button';
+import BookingModalTrigger from '@/components/booking/BookingModalTrigger';
 import styles from './Cta.module.css';
 
 export default function Cta() {
@@ -24,9 +24,9 @@ export default function Cta() {
                 +38 (096) 756-60-91
               </ResponsiveCallLink>
 
-              <Button type="button" className={styles.button}>
+              <BookingModalTrigger className={styles.button}>
                 Забронювати
-              </Button>
+              </BookingModalTrigger>
             </div>
           </div>
         </div>
