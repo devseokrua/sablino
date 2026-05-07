@@ -28,6 +28,15 @@
   pointer-events: none;
 }
 
+:global([data-theme='dark']) .overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(8, 12, 10, 0) 0%,
+    rgba(8, 12, 10, 0.36) 52%,
+    rgba(8, 12, 10, 0.62) 100%
+  );
+}
+
 .content {
   position: absolute;
   left: 0;
@@ -58,7 +67,7 @@
   font-size: var(--font-size-sm);
   line-height: var(--line-height-base);
   color: var(--color-muted);
-  max-width: 40ch;
+  max-width: 50ch;
 }
 
 .actions {

@@ -97,7 +97,18 @@
 }
 
 :global([data-theme='dark']) .panel {
+  --color-bg-body: #f7f4ee;
+  background: var(--color-bg-light);
+  color: var(--color-bg-body);
   box-shadow: 0 20px 44px rgba(0, 0, 0, 0.4);
+}
+
+:global([data-theme='dark']) .title {
+  color: var(--color-text-soft);
+}
+
+:global([data-theme='dark']) .subtitle {
+  color: var(--color-bg-body);
 }
 
 :global([data-theme='dark']) .closeButton:hover,

@@ -15,6 +15,13 @@
   gap: 7px;
 }
 
+.fieldError {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.4;
+  color: #b42318;
+}
+
 .label {
   margin: 0;
   font-weight: 600;
@@ -41,6 +48,16 @@
     border-color var(--transition-base),
     color var(--transition-base),
     outline-color var(--transition-base);
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--color-text-soft);
+}
+
+.input:focus::placeholder,
+.textarea:focus::placeholder {
+  color: transparent;
 }
 
 .textarea {
@@ -267,6 +284,13 @@
   cursor: not-allowed;
 }
 
+.requiredFieldsNote {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--color-text-soft);
+}
+
 :global([data-theme='dark']) .calendarNavButton {
   color: var(--color-control-hover);
 }
@@ -285,6 +309,44 @@
   stroke: currentColor;
 }
 
+:global([data-theme='dark']) .calendarWrap,
+:global([data-theme='dark']) .calendarDisabled .calendarDayButton {
+  background: var(--color-bg-light);
+}
+
+:global([data-theme='dark']) .form,
+:global([data-theme='dark']) .label,
+:global([data-theme='dark']) .labelHint,
+:global([data-theme='dark']) .requiredFieldsNote,
+:global([data-theme='dark']) .input,
+:global([data-theme='dark']) .textarea,
+:global([data-theme='dark']) .calendarCaptionLabel,
+:global([data-theme='dark']) .calendarWeekday,
+:global([data-theme='dark']) .calendarDayButton,
+:global([data-theme='dark']) .rangeSummary,
+:global([data-theme='dark']) .fieldError,
+:global([data-theme='dark']) .successMessage,
+:global([data-theme='dark']) .errorMessage {
+  color: var(--color-bg-body);
+}
+
+:global([data-theme='dark']) .calendarRangeStart .calendarDayButton,
+:global([data-theme='dark']) .calendarRangeEnd .calendarDayButton,
+:global([data-theme='dark']) .calendarSelected .calendarDayButton,
+:global([data-theme='dark']) .calendarRangeMiddle .calendarDayButton {
+  color: var(--color-bg-body);
+}
+
+:global([data-theme='dark']) .input::placeholder,
+:global([data-theme='dark']) .textarea::placeholder {
+  color: color-mix(in srgb, var(--color-bg-body) 72%, transparent);
+}
+
+:global([data-theme='dark']) .input:focus::placeholder,
+:global([data-theme='dark']) .textarea:focus::placeholder {
+  color: transparent;
+}
+
 .successMessage,
 .errorMessage {
   margin: 0;
@@ -298,6 +360,14 @@
 
 .errorMessage {
   color: #b42318;
+}
+
+:global([data-theme='dark']) .errorMessage {
+  color: #ff6b6b;
+}
+
+:global([data-theme='dark']) .fieldError {
+  color: #ff6b6b;
 }
 
 .honeypot {

@@ -10,12 +10,12 @@
 
   --color-bg-body: #f7f4ee;
   --color-bg-light: #fffdf9;
-  --color-bg-accent: #ece5da;
+  --color-bg-accent: #dad2c6;
 
   --color-white: #ffffff;
   --color-border: rgba(58, 61, 59, 0.18);
   --color-text-soft: rgba(58, 61, 59, 0.72);
-  --color-surface-overlay: rgba(255, 253, 249, 0.72);
+  --color-surface-overlay: #fffdf9d0;
   --color-title: var(--color-primary);
   --color-accent-strong: var(--color-primary);
   --color-header-soft-overlay: rgba(247, 244, 238, 0.25);
