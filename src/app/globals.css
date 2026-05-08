@@ -108,6 +108,7 @@
 
   --color-border: rgba(242, 239, 231, 0.18);
   --color-text-soft: #ced8c8;
+  --color-text-placeholder: #929290;
   --color-surface-overlay: rgba(58, 64, 59, 0.86);
   --color-title: #e2ded6;
   --color-accent-strong: #d8d2c8;
@@ -115,6 +116,7 @@
   --color-header-panel-overlay: rgba(53, 89, 71, 0.94);
   --color-sticky-ring: rgba(242, 239, 231, 0.22);
   --color-control-hover: #d8d2c8;
+  --color-error-message: #ff6b6b;
 }
 
 /* =========================

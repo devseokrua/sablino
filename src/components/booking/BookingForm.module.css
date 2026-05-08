@@ -339,7 +339,7 @@
 
 :global([data-theme='dark']) .input::placeholder,
 :global([data-theme='dark']) .textarea::placeholder {
-  color: color-mix(in srgb, var(--color-bg-body) 72%, transparent);
+  color: var(--color-text-placeholder);
 }
 
 :global([data-theme='dark']) .input:focus::placeholder,
@@ -359,15 +359,15 @@
 }
 
 .errorMessage {
-  color: #b42318;
+  color: var(--color-error-message);
 }
 
 :global([data-theme='dark']) .errorMessage {
-  color: #ff6b6b;
+  color: var(--color-error-message);
 }
 
 :global([data-theme='dark']) .fieldError {
-  color: #ff6b6b;
+  color: var(--color-error-message);
 }
 
 .honeypot {
