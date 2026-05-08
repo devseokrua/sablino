@@ -149,9 +149,18 @@ export default async function HouseDetailsPage({ params }: PageProps) {
     <div className={styles.page}>
       <main className={styles.main}>
         <div className={styles.container}>
-          <Link href={`/#house-${house.slug}`} className={styles.backLink}>
-            &larr; повернутись до будинків
-          </Link>
+          <div className={styles.topNav}>
+            <Link href={`/#house-${house.slug}`} className={styles.backLink}>
+              &larr; повернутись до будинків
+            </Link>
+            <Link
+              href="/conditions"
+              className={styles.conditionsTopLink}
+              aria-label="Перейти до умов проживання"
+            >
+              Умови проживання
+            </Link>
+          </div>
 
           <div className={styles.grid}>
             <section className={styles.left}>
