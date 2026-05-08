@@ -27,10 +27,26 @@ export default function ThemeToggle({ className }: ThemeToggleProps) {
         type="button"
         className={[styles.toggle, className ?? ''].filter(Boolean).join(' ')}
         aria-label="Увімкнути темну тему"
-        aria-pressed={false}
+        aria-pressed="false"
       >
         <span className={styles.thumb}>
           <Sun className={styles.icon} aria-hidden="true" focusable="false" />
+        </span>
+      </button>
+    );
+  }
+
+  if (isDark) {
+    return (
+      <button
+        type="button"
+        className={composedClassName}
+        onClick={() => setTheme(nextTheme)}
+        aria-label="Увімкнути світлу тему"
+        aria-pressed="true"
+      >
+        <span className={styles.thumb}>
+          <Moon className={styles.icon} aria-hidden="true" focusable="false" />
         </span>
       </button>
     );
@@ -41,15 +57,11 @@ export default function ThemeToggle({ className }: ThemeToggleProps) {
       type="button"
       className={composedClassName}
       onClick={() => setTheme(nextTheme)}
-      aria-label={isDark ? 'Увімкнути світлу тему' : 'Увімкнути темну тему'}
-      aria-pressed={isDark}
+      aria-label="Увімкнути темну тему"
+      aria-pressed="false"
     >
       <span className={styles.thumb}>
-        {isDark ? (
-          <Moon className={styles.icon} aria-hidden="true" focusable="false" />
-        ) : (
-          <Sun className={styles.icon} aria-hidden="true" focusable="false" />
-        )}
+        <Sun className={styles.icon} aria-hidden="true" focusable="false" />
       </span>
     </button>
   );

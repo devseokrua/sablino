@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import housesData from '@/data/houses.json';
 import housePricesData from '@/data/house-prices.json';
+import BookingModalTrigger from '@/components/booking/BookingModalTrigger';
 import ResponsiveCallLink from '@/components/ui/responsive-call-link/ResponsiveCallLink';
 import { getHouseGallery } from '@/utils/getHouseGallery';
 import HouseGallery from './HouseGallery';
@@ -249,14 +250,18 @@ export default async function HouseDetailsPage({ params }: PageProps) {
                       >
                         <use href="/sprite.svg#icon-phone" />
                       </svg>
-                      +38 (096) 756-60-91
+                      (096) 756-60-91
                     </ResponsiveCallLink>
-                    <Link
-                      href="/conditions"
-                      className={`${styles.actionLink} ${styles.actionButtonLink}`}
-                    >
-                      умови проживання
-                    </Link>
+                    <BookingModalTrigger className={styles.actionLink}>
+                      <svg
+                        className={styles.actionIcon}
+                        aria-hidden="true"
+                        focusable="false"
+                      >
+                        <use href="/sprite.svg#icon-booking" />
+                      </svg>
+                      Забронювати
+                    </BookingModalTrigger>
                   </div>
                 </>
               ) : (

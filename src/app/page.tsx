@@ -7,10 +7,12 @@ import Contacts from '@/components/sections/contacts/Contacts';
 import HashScroll from '@/components/common/HashScroll';
 import StickyCta from '@/components/sections/sticky-cta/StickyCta';
 import Footer from '@/components/layout/footer/Footer';
+import LocalBusinessJsonLd from '@/components/seo/LocalBusinessJsonLd';
 
 export default function Home() {
   return (
     <>
+      <LocalBusinessJsonLd />
       <HashScroll />
       <main>
         <Hero />

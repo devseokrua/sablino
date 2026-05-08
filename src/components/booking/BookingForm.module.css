@@ -1,0 +1,381 @@
+.form {
+  display: grid;
+  gap: 18px;
+  width: 100%;
+  max-width: none;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  color: var(--color-muted);
+}
+
+.fieldGroup {
+  display: grid;
+  gap: 7px;
+}
+
+.fieldError {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.4;
+  color: #b42318;
+}
+
+.label {
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.labelHint {
+  font-size: 0.9em;
+  font-weight: 400;
+  color: var(--color-text-soft);
+}
+
+.input,
+.textarea {
+  width: 100%;
+  border: 1px solid var(--color-bg-accent);
+  border-radius: var(--radius);
+  padding: 9px 11px;
+  background: var(--color-bg-light);
+  color: var(--color-muted);
+  font: inherit;
+  transition:
+    background-color var(--transition-base),
+    border-color var(--transition-base),
+    color var(--transition-base),
+    outline-color var(--transition-base);
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--color-text-soft);
+}
+
+.input:focus::placeholder,
+.textarea:focus::placeholder {
+  color: transparent;
+}
+
+.textarea {
+  resize: none;
+  min-height: 68px;
+  max-height: 160px;
+  overflow-y: auto;
+}
+
+.input:focus,
+.textarea:focus {
+  border-color: var(--color-primary);
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
+}
+
+:global([data-theme='dark']) .input:hover,
+:global([data-theme='dark']) .textarea:hover {
+  border-color: var(--color-control-hover);
+}
+
+:global([data-theme='dark']) .input:focus,
+:global([data-theme='dark']) .textarea:focus {
+  background: var(--color-bg-accent);
+  border-color: var(--color-control-hover);
+  outline-color: var(--color-control-hover);
+}
+
+.calendarWrap {
+  border: 1px solid var(--color-bg-accent);
+  border-radius: var(--radius);
+  background: var(--color-bg-body);
+  padding: 8px;
+}
+
+.calendarRoot {
+  width: 100%;
+  position: relative;
+}
+
+.calendarMonths {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  justify-content: center;
+}
+
+.calendarMonth {
+  width: 100%;
+  min-width: 0;
+}
+
+.calendarCaption {
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 6px;
+  padding-inline: 44px;
+  text-align: center;
+}
+
+.calendarCaptionLabel {
+  font-weight: 600;
+  text-transform: capitalize;
+  text-align: center;
+}
+
+.calendarNav {
+  position: absolute;
+  top: 0;
+  left: 8px;
+  right: 8px;
+  z-index: 1;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.calendarNavButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--color-primary);
+  cursor: pointer;
+  pointer-events: auto;
+  transition:
+    color var(--transition-base),
+    background-color var(--transition-base),
+    opacity var(--transition-base);
+}
+
+.calendarNavButton svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+  stroke: currentColor;
+}
+
+.calendarNavButton:hover,
+.calendarNavButton:focus-visible {
+  color: var(--color-secondary);
+}
+
+.calendarNavButton:focus-visible {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: 2px;
+}
+
+.calendarNavButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.calendarMonthGrid {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.calendarWeekdays {
+  border-bottom: 1px solid var(--color-bg-accent);
+}
+
+.calendarWeekday {
+  padding: 4px 0;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  opacity: 0.8;
+}
+
+.calendarWeeks {
+  width: 100%;
+}
+
+.calendarWeek {
+  width: 100%;
+}
+
+.calendarDay {
+  width: 34px;
+  height: 34px;
+  padding: 1px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.calendarDayButton {
+  width: 100%;
+  height: 100%;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--color-muted);
+  font: inherit;
+  cursor: pointer;
+}
+
+.calendarDayButton:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
+}
+
+.calendarToday .calendarDayButton {
+  border-color: var(--color-primary);
+}
+
+.calendarRangeMiddle .calendarDayButton {
+  border-radius: 0;
+  background: var(--color-bg-accent);
+}
+
+.calendarRangeStart .calendarDayButton,
+.calendarRangeEnd .calendarDayButton,
+.calendarSelected .calendarDayButton {
+  background: var(--color-primary);
+  color: var(--color-bg-light);
+}
+
+.calendarRangeStart .calendarDayButton {
+  border-radius: var(--radius) 0 0 var(--radius);
+}
+
+.calendarRangeEnd .calendarDayButton {
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.calendarRangeStart.calendarRangeEnd .calendarDayButton {
+  border-radius: var(--radius);
+}
+
+.calendarOutside .calendarDayButton {
+  opacity: 0.45;
+}
+
+.calendarDisabled .calendarDayButton {
+  opacity: 0.35;
+  cursor: not-allowed;
+  background: var(--color-bg-body);
+}
+
+.rangeSummary {
+  margin: 0;
+  font-size: 14px;
+  color: var(--color-muted);
+}
+
+.submitButton {
+  width: 100%;
+  max-width: 320px;
+  margin-inline: auto;
+}
+
+.submitButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.requiredFieldsNote {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--color-text-soft);
+}
+
+:global([data-theme='dark']) .calendarNavButton {
+  color: var(--color-control-hover);
+}
+
+:global([data-theme='dark']) .calendarNavButton:hover,
+:global([data-theme='dark']) .calendarNavButton:focus-visible {
+  color: var(--color-control-hover);
+}
+
+:global([data-theme='dark']) .calendarNavButton:focus-visible {
+  outline-color: var(--color-control-hover);
+}
+
+:global([data-theme='dark']) .calendarNavButton svg {
+  fill: currentColor;
+  stroke: currentColor;
+}
+
+:global([data-theme='dark']) .calendarWrap,
+:global([data-theme='dark']) .calendarDisabled .calendarDayButton {
+  background: var(--color-bg-light);
+}
+
+:global([data-theme='dark']) .form,
+:global([data-theme='dark']) .label,
+:global([data-theme='dark']) .labelHint,
+:global([data-theme='dark']) .requiredFieldsNote,
+:global([data-theme='dark']) .input,
+:global([data-theme='dark']) .textarea,
+:global([data-theme='dark']) .calendarCaptionLabel,
+:global([data-theme='dark']) .calendarWeekday,
+:global([data-theme='dark']) .calendarDayButton,
+:global([data-theme='dark']) .rangeSummary,
+:global([data-theme='dark']) .fieldError,
+:global([data-theme='dark']) .successMessage,
+:global([data-theme='dark']) .errorMessage {
+  color: var(--color-bg-body);
+}
+
+:global([data-theme='dark']) .calendarRangeStart .calendarDayButton,
+:global([data-theme='dark']) .calendarRangeEnd .calendarDayButton,
+:global([data-theme='dark']) .calendarSelected .calendarDayButton,
+:global([data-theme='dark']) .calendarRangeMiddle .calendarDayButton {
+  color: var(--color-bg-body);
+}
+
+:global([data-theme='dark']) .input::placeholder,
+:global([data-theme='dark']) .textarea::placeholder {
+  color: var(--color-text-placeholder);
+}
+
+:global([data-theme='dark']) .input:focus::placeholder,
+:global([data-theme='dark']) .textarea:focus::placeholder {
+  color: transparent;
+}
+
+.successMessage,
+.errorMessage {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.successMessage {
+  color: var(--color-primary);
+}
+
+.errorMessage {
+  color: var(--color-error-message);
+}
+
+:global([data-theme='dark']) .errorMessage {
+  color: var(--color-error-message);
+}
+
+:global([data-theme='dark']) .fieldError {
+  color: var(--color-error-message);
+}
+
+.honeypot {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .form {
+    gap: 20px;
+  }
+}

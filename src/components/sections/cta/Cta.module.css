@@ -28,6 +28,15 @@
   pointer-events: none;
 }
 
+:global([data-theme='dark']) .overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(8, 12, 10, 0) 0%,
+    rgba(8, 12, 10, 0.36) 52%,
+    rgba(8, 12, 10, 0.62) 100%
+  );
+}
+
 .content {
   position: absolute;
   left: 0;
@@ -58,10 +67,19 @@
   font-size: var(--font-size-sm);
   line-height: var(--line-height-base);
   color: var(--color-muted);
-  max-width: 40ch;
+  max-width: 50ch;
+}
+
+.actions {
+  width: 100%;
+  max-width: var(--content-width-sm);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
 }
 
 .button {
+  width: 100%;
   max-width: var(--content-width-sm);
   height: 60px;
 }
@@ -80,6 +98,13 @@
 }
 
 @media (min-width: 1024px) {
+  .actions {
+    width: calc((var(--content-width-sm) * 2) + var(--space-4));
+    max-width: none;
+    grid-template-columns: var(--content-width-sm) var(--content-width-sm);
+    gap: var(--space-4);
+  }
+
   .card {
     min-height: 430px;
     aspect-ratio: 16 / 6;
