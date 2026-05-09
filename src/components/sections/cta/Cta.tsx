@@ -18,14 +18,22 @@ export default function Cta() {
 
             <div className={styles.actions}>
               <ResponsiveCallLink className={styles.button}>
-                <svg className={styles.icon} aria-hidden="true" focusable="false">
+                <svg
+                  className={styles.icon}
+                  aria-hidden="true"
+                  focusable="false"
+                >
                   <use href="/sprite.svg#icon-phone" />
                 </svg>
-                (096) 756-60-91
+                +38 (096) 756-60-91
               </ResponsiveCallLink>
 
               <BookingModalTrigger className={styles.button}>
-                <svg className={styles.icon} aria-hidden="true" focusable="false">
+                <svg
+                  className={styles.icon}
+                  aria-hidden="true"
+                  focusable="false"
+                >
                   <use href="/sprite.svg#icon-booking" />
                 </svg>
                 Забронювати

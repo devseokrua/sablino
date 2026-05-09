@@ -84,7 +84,11 @@ export default function Header() {
             aria-controls="mobile-menu"
             onClick={() => setIsMenuOpen(false)}
           >
-            <svg className={styles.burgerIcon} aria-hidden="true" focusable="false">
+            <svg
+              className={styles.burgerIcon}
+              aria-hidden="true"
+              focusable="false"
+            >
               <use href="/sprite.svg#icon-burger" />
             </svg>
           </button>
@@ -97,7 +101,11 @@ export default function Header() {
             aria-controls="mobile-menu"
             onClick={() => setIsMenuOpen(true)}
           >
-            <svg className={styles.burgerIcon} aria-hidden="true" focusable="false">
+            <svg
+              className={styles.burgerIcon}
+              aria-hidden="true"
+              focusable="false"
+            >
               <use href="/sprite.svg#icon-burger" />
             </svg>
           </button>
@@ -113,14 +121,23 @@ export default function Header() {
             onClick={closeMenu}
           />
 
-          <div id="mobile-menu" className={styles.modalPanel} role="dialog" aria-modal="true">
+          <div
+            id="mobile-menu"
+            className={styles.modalPanel}
+            role="dialog"
+            aria-modal="true"
+          >
             <button
               type="button"
               aria-label="Закрити меню"
               className={styles.modalCloseButton}
               onClick={closeMenu}
             >
-              <svg className={styles.closeIcon} aria-hidden="true" focusable="false">
+              <svg
+                className={styles.closeIcon}
+                aria-hidden="true"
+                focusable="false"
+              >
                 <use href="/sprite.svg#icon-close" />
               </svg>
             </button>
@@ -152,7 +169,7 @@ export default function Header() {
               >
                 <use href="/sprite.svg#icon-phone" />
               </svg>
-              (096) 756-60-91
+              +38 (096) 756-60-91
             </a>
 
             <button

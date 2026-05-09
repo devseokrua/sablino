@@ -6,13 +6,13 @@ import styles from './BookingSuccessToast.module.css';
 type BookingSuccessToastProps = {
   isVisible: boolean;
   message: string;
-  onHide: () => void;
+  onHideAction: () => void;
 };
 
 export default function BookingSuccessToast({
   isVisible,
   message,
-  onHide,
+  onHideAction,
 }: BookingSuccessToastProps) {
   useEffect(() => {
     if (!isVisible) {
@@ -20,13 +20,13 @@ export default function BookingSuccessToast({
     }
 
     const timeoutId = window.setTimeout(() => {
-      onHide();
+      onHideAction();
     }, 5000);
 
     return () => {
       window.clearTimeout(timeoutId);
     };
-  }, [isVisible, onHide]);
+  }, [isVisible, onHideAction]);
 
   if (!isVisible) {
     return null;

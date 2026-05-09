@@ -1,6 +1,13 @@
 ﻿'use client';
 
-import { ChangeEvent, FormEvent, useId, useMemo, useRef, useState } from 'react';
+import {
+  ChangeEvent,
+  SubmitEventHandler,
+  useId,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { DayPicker, type DateRange } from 'react-day-picker';
 import { uk } from 'react-day-picker/locale';
 
@@ -26,7 +33,7 @@ type FieldErrors = {
 };
 
 type BookingFormProps = {
-  onSuccess?: () => void;
+  onSuccessAction?: () => void;
 };
 
 const initialFormData: FormData = {
@@ -46,7 +53,8 @@ const PHONE_REQUIRED_ERROR_MESSAGE = 'Вкажіть номер телефону
 const PHONE_FORMAT_ERROR_MESSAGE =
   'Телефон повинен бути написаний у форматі +хх ххх ххх ххх.';
 const DATE_RANGE_REQUIRED_ERROR_MESSAGE = 'Оберіть дати заїзду та виїзду.';
-const DATE_RANGE_INCOMPLETE_ERROR_MESSAGE = 'Оберіть дату заїзду та дату виїзду.';
+const DATE_RANGE_INCOMPLETE_ERROR_MESSAGE =
+  'Оберіть дату заїзду та дату виїзду.';
 const PHONE_ALLOWED_CHARS_PATTERN = /^\+[0-9()\s-]+$/;
 const PHONE_NORMALIZED_PATTERN = /^\+\d{9,15}$/;
 
@@ -148,7 +156,7 @@ function updateFieldError(
   return { ...previousErrors, [field]: error };
 }
 
-export default function BookingForm({ onSuccess }: BookingFormProps) {
+export default function BookingForm({ onSuccessAction }: BookingFormProps) {
   const nameErrorId = useId();
   const phoneErrorId = useId();
   const datesErrorId = useId();
@@ -173,11 +181,15 @@ export default function BookingForm({ onSuccess }: BookingFormProps) {
     setFormData((prev) => ({ ...prev, [name]: value }));
 
     if (name === 'name' && (hasSubmitAttempt || fieldErrors.name)) {
-      setFieldErrors((prev) => updateFieldError(prev, 'name', validateName(value)));
+      setFieldErrors((prev) =>
+        updateFieldError(prev, 'name', validateName(value))
+      );
     }
 
     if (name === 'phone' && (hasSubmitAttempt || fieldErrors.phone)) {
-      setFieldErrors((prev) => updateFieldError(prev, 'phone', validatePhone(value)));
+      setFieldErrors((prev) =>
+        updateFieldError(prev, 'phone', validatePhone(value))
+      );
     }
   };
 
@@ -187,7 +199,9 @@ export default function BookingForm({ onSuccess }: BookingFormProps) {
       setStatus(null);
     }
     if (hasSubmitAttempt || fieldErrors.dates) {
-      setFieldErrors((prev) => updateFieldError(prev, 'dates', validateDateRange(range)));
+      setFieldErrors((prev) =>
+        updateFieldError(prev, 'dates', validateDateRange(range))
+      );
     }
   };
 
@@ -197,7 +211,7 @@ export default function BookingForm({ onSuccess }: BookingFormProps) {
     event.currentTarget.style.height = `${event.currentTarget.scrollHeight}px`;
   };
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit: SubmitEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
     if (isSubmitting) {
       return;
@@ -222,7 +236,11 @@ export default function BookingForm({ onSuccess }: BookingFormProps) {
       const checkInDate = selectedRange?.from;
       const checkOutDate = selectedRange?.to;
 
-      if (!checkInDate || !checkOutDate || !isValidRange(checkInDate, checkOutDate)) {
+      if (
+        !checkInDate ||
+        !checkOutDate ||
+        !isValidRange(checkInDate, checkOutDate)
+      ) {
         setFieldErrors((prev) =>
           updateFieldError(prev, 'dates', DATE_RANGE_INCOMPLETE_ERROR_MESSAGE)
         );
@@ -262,7 +280,7 @@ export default function BookingForm({ onSuccess }: BookingFormProps) {
         if (commentTextareaRef.current) {
           commentTextareaRef.current.style.height = '';
         }
-        onSuccess?.();
+        onSuccessAction?.();
         return;
       }
 
@@ -295,7 +313,9 @@ export default function BookingForm({ onSuccess }: BookingFormProps) {
       <div className={styles.fieldGroup}>
         <label className={styles.label} htmlFor="name">
           Ім’я та прізвище *{' '}
-          <span className={styles.labelHint}>(обов&apos;язкове для заповнення)</span>
+          <span className={styles.labelHint}>
+            (обов&apos;язкове для заповнення)
+          </span>
         </label>
         {fieldErrors.name ? (
           <input
@@ -334,7 +354,10 @@ export default function BookingForm({ onSuccess }: BookingFormProps) {
 
       <div className={styles.fieldGroup}>
         <label className={styles.label} htmlFor="phone">
-          Телефон * <span className={styles.labelHint}>(обов&apos;язкове для заповнення)</span>
+          Телефон *{' '}
+          <span className={styles.labelHint}>
+            (обов&apos;язкове для заповнення)
+          </span>
         </label>
         {fieldErrors.phone ? (
           <input
@@ -357,7 +380,7 @@ export default function BookingForm({ onSuccess }: BookingFormProps) {
             name="phone"
             type="tel"
             autoComplete="tel"
-            placeholder="Напишіть свій номер телефону у форматі +хх ххх ххх ххх"
+            placeholder="Напишіть свій номер телефону у форматі +хх ххх ххх хx хх"
             value={formData.phone}
             onChange={handleChange}
             required
@@ -374,7 +397,9 @@ export default function BookingForm({ onSuccess }: BookingFormProps) {
       <div className={styles.fieldGroup}>
         <p className={styles.label}>
           Дати бронювання *{' '}
-          <span className={styles.labelHint}>(оберіть дати заїзду та виїзду)</span>
+          <span className={styles.labelHint}>
+            (оберіть дати заїзду та виїзду)
+          </span>
         </p>
         <div className={styles.calendarWrap}>
           {fieldErrors.dates ? (
@@ -463,12 +488,14 @@ export default function BookingForm({ onSuccess }: BookingFormProps) {
             {fieldErrors.dates}
           </p>
         ) : null}
-        {rangeSummary ? <p className={styles.rangeSummary}>{rangeSummary}</p> : null}
+        {rangeSummary ? (
+          <p className={styles.rangeSummary}>{rangeSummary}</p>
+        ) : null}
       </div>
 
       <div className={styles.fieldGroup}>
         <label className={styles.label} htmlFor="comment">
-          Коментар
+          Додаткова інформація
         </label>
         <textarea
           ref={commentTextareaRef}
@@ -476,7 +503,7 @@ export default function BookingForm({ onSuccess }: BookingFormProps) {
           id="comment"
           name="comment"
           rows={2}
-          placeholder="Напишіть свій коментар"
+          placeholder="Вкажіть кількість осіб, вік дітей або іншу інформацію, яку вважаєте важливою для бронювання"
           value={formData.comment}
           onChange={handleCommentChange}
           maxLength={500}
@@ -496,13 +523,21 @@ export default function BookingForm({ onSuccess }: BookingFormProps) {
         />
       </div>
 
-      <Button className={styles.submitButton} type="submit" disabled={isSubmitting}>
+      <Button
+        className={styles.submitButton}
+        type="submit"
+        disabled={isSubmitting}
+      >
         {isSubmitting ? 'Надсилання...' : 'Надіслати заявку'}
       </Button>
 
       {status ? (
         <p
-          className={status.type === 'success' ? styles.successMessage : styles.errorMessage}
+          className={
+            status.type === 'success'
+              ? styles.successMessage
+              : styles.errorMessage
+          }
           role="status"
           aria-live="polite"
         >

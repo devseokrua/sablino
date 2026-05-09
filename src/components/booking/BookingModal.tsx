@@ -93,7 +93,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
               </p>
             </div>
 
-            <BookingForm onSuccess={handleSuccess} />
+            <BookingForm onSuccessAction={handleSuccess} />
           </div>
         </div>
       ) : null}
@@ -101,7 +101,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
       <BookingSuccessToast
         isVisible={isSuccessVisible}
         message="Заявку надіслано. Ми зв’яжемося з вами для підтвердження."
-        onHide={handleToastHide}
+        onHideAction={handleToastHide}
       />
     </>,
     document.body

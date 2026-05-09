@@ -79,7 +79,9 @@ const fallbackTitle = 'Будинки та альтанки';
 const fallbackDescription =
   'Огляд будинків та альтанок у садибі «Саблінська». Адреса: Кіровоградська область, Суботцівська ОТГ, с. Шаблине, вул. Набережна, 25. Телефон: +38 (096) 756-60-91.';
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const house = houses.items.find((item) => item.slug === slug);
 
@@ -143,7 +145,9 @@ export default async function HouseDetailsPage({ params }: PageProps) {
   const priceValue = price?.value ?? 'Ціну уточнюйте';
   const priceLabel = price?.label ?? prices.defaultLabel;
   const galleryImages = getHouseGallery(house.slug);
-  const safeGalleryImages = galleryImages.length ? galleryImages : [house.coverImage];
+  const safeGalleryImages = galleryImages.length
+    ? galleryImages
+    : [house.coverImage];
 
   return (
     <div className={styles.page}>
@@ -170,11 +174,11 @@ export default async function HouseDetailsPage({ params }: PageProps) {
                 <div className={styles.periodPriceGrid}>
                   {price.periodPrices.map((item) => {
                     const normalizedMatch = item.value.match(
-                      /^(.*?)(?:\s*)грн\s*\/\s*доба$/i,
+                      /^(.*?)(?:\s*)грн\s*\/\s*доба$/i
                     );
                     const hasUnit = Boolean(normalizedMatch);
                     const amount = hasUnit
-                      ? normalizedMatch?.[1].trim() ?? item.value
+                      ? (normalizedMatch?.[1].trim() ?? item.value)
                       : item.value;
 
                     return (
@@ -205,18 +209,26 @@ export default async function HouseDetailsPage({ params }: PageProps) {
                     </div>
 
                     {price?.includedGuestsText ? (
-                      <p className={styles.priceNote}>{price.includedGuestsText}</p>
+                      <p className={styles.priceNote}>
+                        {price.includedGuestsText}
+                      </p>
                     ) : null}
                   </div>
 
                   {price?.extraGuest ? (
                     <div className={styles.priceCard}>
                       <div className={styles.priceRow}>
-                        <span className={styles.priceValue}>+{price.extraGuest.value}</span>
-                        <span className={styles.priceLabel}>{price.extraGuest.label}</span>
+                        <span className={styles.priceValue}>
+                          +{price.extraGuest.value}
+                        </span>
+                        <span className={styles.priceLabel}>
+                          {price.extraGuest.label}
+                        </span>
                       </div>
 
-                      <p className={styles.priceNote}>{price.extraGuest.text}</p>
+                      <p className={styles.priceNote}>
+                        {price.extraGuest.text}
+                      </p>
                     </div>
                   ) : null}
                 </div>
@@ -229,7 +241,9 @@ export default async function HouseDetailsPage({ params }: PageProps) {
                   <div className={styles.detailsTop}>
                     <h1 className={styles.title}>{house.title}</h1>
                     <div className={styles.featuresPanel}>
-                      <p className={styles.subtitle}>{house.details.subtitle}:</p>
+                      <p className={styles.subtitle}>
+                        {house.details.subtitle}:
+                      </p>
                       <ul className={styles.features}>
                         {house.details.features.map((feature) => (
                           <li
@@ -259,7 +273,7 @@ export default async function HouseDetailsPage({ params }: PageProps) {
                       >
                         <use href="/sprite.svg#icon-phone" />
                       </svg>
-                      (096) 756-60-91
+                      +38 (096) 756-60-91
                     </ResponsiveCallLink>
                     <BookingModalTrigger className={styles.actionLink}>
                       <svg
@@ -290,4 +304,3 @@ export default async function HouseDetailsPage({ params }: PageProps) {
     </div>
   );
 }
-
