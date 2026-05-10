@@ -1,8 +1,26 @@
 ﻿import { z } from 'zod';
 
 const nameRegex = /^[\p{L}'’ʼ -]+$/u;
-const phoneRegex = /^[0-9+()\s-]+$/;
+const phoneRegex = /^[0-9+()\s./-]+$/;
 const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+
+function hasValidPhoneDigits(value: string): boolean {
+  const digits = value.replace(/\D/g, '');
+
+  if (digits.startsWith('380') && digits.length === 12) {
+    return true;
+  }
+
+  if (digits.startsWith('0') && digits.length === 10) {
+    return true;
+  }
+
+  if (digits.length === 9) {
+    return true;
+  }
+
+  return digits.length >= 10 && digits.length <= 15;
+}
 
 function isValidCalendarDate(value: string): boolean {
   const [yearRaw, monthRaw, dayRaw] = value.split('-');
@@ -69,8 +87,9 @@ export const bookingSchema = z
       .max(20, 'Номер телефону не може бути довшим за 20 символів')
       .regex(
         phoneRegex,
-        'Номер телефону може містити лише цифри, пробіли та символи + - ( )'
-      ),
+        'Номер телефону може містити лише цифри, пробіли та символи + - ( ) . /'
+      )
+      .refine(hasValidPhoneDigits, 'Вкажіть коректний номер телефону'),
     checkInDate: checkInDateSchema,
     checkOutDate: checkOutDateSchema,
     comment: z

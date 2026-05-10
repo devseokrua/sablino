@@ -8,9 +8,31 @@ export function sanitizeForTelegram(value: string): string {
     .trim();
 }
 
+export function normalizePhoneForTelegram(value: string): string {
+  let digits = value.replace(/\D/g, '');
+
+  if (digits.startsWith('00')) {
+    digits = digits.slice(2);
+  }
+
+  if (digits.startsWith('380') && digits.length === 12) {
+    return `+${digits}`;
+  }
+
+  if (digits.startsWith('0') && digits.length === 10) {
+    return `+38${digits}`;
+  }
+
+  if (digits.length === 9) {
+    return `+380${digits}`;
+  }
+
+  return digits ? `+${digits}` : '-';
+}
+
 export function formatBookingMessage(data: BookingInput): string {
   const name = sanitizeForTelegram(data.name);
-  const phone = sanitizeForTelegram(data.phone);
+  const phone = normalizePhoneForTelegram(data.phone);
   const checkInDate = sanitizeForTelegram(data.checkInDate);
   const checkOutDate = sanitizeForTelegram(data.checkOutDate);
   const comment = sanitizeForTelegram(data.comment ?? '') || '-';
