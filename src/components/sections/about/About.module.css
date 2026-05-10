@@ -5,6 +5,8 @@
 .top {
   position: relative;
   width: 100%;
+  max-width: var(--container-max-width);
+  margin-inline: auto;
   background: var(--color-primary);
   overflow: hidden;
   padding-block: var(--space-6);
@@ -135,10 +137,10 @@
   .imageWrap {
     position: absolute;
     top: 0;
-    right: max(0px, calc((100vw - var(--container-max-width)) / 2));
+    right: 0;
     bottom: 0;
     z-index: 1;
-    width: min(55vw, calc(var(--container-max-width) * 0.55));
+    width: 55%;
     height: 100%;
     margin: 0;
     aspect-ratio: auto;
