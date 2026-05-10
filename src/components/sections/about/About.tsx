@@ -25,18 +25,18 @@ export default function About() {
                 дозволяють по-справжньому переключитися та відновити сили.
               </p>
             </div>
-
-            <div className={styles.imageWrap}>
-              <Image
-                src="/about-main.webp"
-                alt="Садиба «Саблінська»"
-                fill
-                sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1439px) 50vw, 656px"
-                className={styles.mainImage}
-              />
-            </div>
           </div>
         </Container>
+
+        <div className={styles.imageWrap}>
+          <Image
+            src="/about-main.webp"
+            alt="Садиба «Саблінська»"
+            fill
+            sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1023px) calc(100vw - 64px), 55vw"
+            className={styles.mainImage}
+          />
+        </div>
       </div>
 
       <div className={styles.bottom}>
