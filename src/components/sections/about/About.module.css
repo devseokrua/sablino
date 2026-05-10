@@ -103,8 +103,8 @@
 .caption {
   margin: 0;
   font-family: var(--font-body);
-  font-weight: var(--font-weight-semibold);
-  font-size: var(--font-size-md);
+  font-weight: 800;
+  font-size: 18px;
   color: var(--color-title);
   text-align: right;
 }
