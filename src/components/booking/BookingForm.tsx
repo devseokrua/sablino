@@ -51,7 +51,7 @@ const NAME_REQUIRED_ERROR_MESSAGE = 'Вкажіть ім’я та прізви�
 const NAME_INVALID_ERROR_MESSAGE = 'Вкажіть ім’я та прізвище повністю.';
 const PHONE_REQUIRED_ERROR_MESSAGE = 'Вкажіть номер телефону.';
 const PHONE_FORMAT_ERROR_MESSAGE =
-  'Телефон повинен бути написаний у форматі +хх ххх ххх ххх.';
+  'Телефон повинен бути написаний у форматі +хх ххх хх хх хх.';
 const DATE_RANGE_REQUIRED_ERROR_MESSAGE = 'Оберіть дати заїзду та виїзду.';
 const DATE_RANGE_INCOMPLETE_ERROR_MESSAGE =
   'Оберіть дату заїзду та дату виїзду.';
@@ -75,7 +75,21 @@ function stripTime(date: Date): Date {
 }
 
 function isValidRange(from: Date, to: Date): boolean {
-  return stripTime(to).getTime() > stripTime(from).getTime();
+  return stripTime(to).getTime() >= stripTime(from).getTime();
+}
+
+function getBookingDates(range: DateRange | undefined): {
+  checkInDate?: Date;
+  checkOutDate?: Date;
+} {
+  if (!range?.from) {
+    return {};
+  }
+
+  return {
+    checkInDate: range.from,
+    checkOutDate: range.to ?? range.from,
+  };
 }
 
 function validateName(value: string): string | undefined {
@@ -113,15 +127,13 @@ function validatePhone(value: string): string | undefined {
 }
 
 function validateDateRange(range: DateRange | undefined): string | undefined {
-  if (!range?.from && !range?.to) {
+  const { checkInDate, checkOutDate } = getBookingDates(range);
+
+  if (!checkInDate || !checkOutDate) {
     return DATE_RANGE_REQUIRED_ERROR_MESSAGE;
   }
 
-  if (!range?.from || !range?.to) {
-    return DATE_RANGE_INCOMPLETE_ERROR_MESSAGE;
-  }
-
-  if (!isValidRange(range.from, range.to)) {
+  if (!isValidRange(checkInDate, checkOutDate)) {
     return DATE_RANGE_INCOMPLETE_ERROR_MESSAGE;
   }
 
@@ -233,8 +245,7 @@ export default function BookingForm({ onSuccessAction }: BookingFormProps) {
     setStatus(null);
 
     try {
-      const checkInDate = selectedRange?.from;
-      const checkOutDate = selectedRange?.to;
+      const { checkInDate, checkOutDate } = getBookingDates(selectedRange);
 
       if (
         !checkInDate ||
@@ -305,7 +316,7 @@ export default function BookingForm({ onSuccessAction }: BookingFormProps) {
   const rangeSummary = selectedRange?.from
     ? selectedRange.to
       ? `${toDdMmYyyy(selectedRange.from)} - ${toDdMmYyyy(selectedRange.to)}`
-      : `${toDdMmYyyy(selectedRange.from)} - ...`
+      : `${toDdMmYyyy(selectedRange.from)}`
     : '';
 
   return (

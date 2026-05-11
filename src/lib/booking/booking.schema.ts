@@ -106,10 +106,10 @@ export const bookingSchema = z
       .default(''),
   })
   .superRefine((data, ctx) => {
-    if (data.checkOutDate <= data.checkInDate) {
+    if (data.checkOutDate < data.checkInDate) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
-        message: 'Дата виїзду має бути пізніше дати заїзду',
+        message: 'Дата виїзду не може бути раніше дати заїзду',
         path: ['checkOutDate'],
       });
     }
