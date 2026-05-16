@@ -62,12 +62,13 @@ const NAME_INVALID_ERROR_MESSAGE =
   'Вкажіть, будь ласка, ім’я та прізвище. Можна використовувати українські або латинські літери, пробіл, дефіс і апостроф.';
 const PHONE_REQUIRED_ERROR_MESSAGE = 'Вкажіть номер телефону.';
 const PHONE_FORMAT_ERROR_MESSAGE =
-  'Телефон повинен бути написаний у форматі +xx xxx xxx xx xx.';
+  'Телефон повинен бути у міжнародному форматі з +. Для українського номера: +38 050 123 45 67.';
 const DATE_RANGE_REQUIRED_ERROR_MESSAGE = 'Оберіть дати заїзду та виїзду.';
 const DATE_RANGE_INCOMPLETE_ERROR_MESSAGE =
   'Оберіть дату заїзду та дату виїзду.';
-const PHONE_ALLOWED_CHARS_PATTERN = /^\+[0-9()\s-]+$/;
-const PHONE_NORMALIZED_PATTERN = /^\+\d{9,15}$/;
+const PHONE_ALLOWED_CHARS_PATTERN = /^[0-9+()\s./-]+$/;
+const PHONE_UA_NORMALIZED_PATTERN = /^\+380\d{9}$/;
+const PHONE_INTERNATIONAL_NORMALIZED_PATTERN = /^\+\d{10,15}$/;
 const NAME_PART_PATTERN = /^\p{L}+(?:['’ʼ-]\p{L}+)*$/u;
 
 function pad(value: number): string {
@@ -126,6 +127,24 @@ function validateName(value: string): string | undefined {
   return undefined;
 }
 
+function normalizePhone(value: string): string {
+  return value.replace(/[()\s./-]/g, '');
+}
+
+function hasValidPhoneDigits(value: string): boolean {
+  const normalizedValue = normalizePhone(value);
+
+  if (!/^\+\d+$/.test(normalizedValue)) {
+    return false;
+  }
+
+  if (normalizedValue.startsWith('+380')) {
+    return PHONE_UA_NORMALIZED_PATTERN.test(normalizedValue);
+  }
+
+  return PHONE_INTERNATIONAL_NORMALIZED_PATTERN.test(normalizedValue);
+}
+
 function validatePhone(value: string): string | undefined {
   const trimmedValue = value.trim();
 
@@ -137,8 +156,7 @@ function validatePhone(value: string): string | undefined {
     return PHONE_FORMAT_ERROR_MESSAGE;
   }
 
-  const normalizedValue = trimmedValue.replace(/[\s()-]/g, '');
-  if (!PHONE_NORMALIZED_PATTERN.test(normalizedValue)) {
+  if (!hasValidPhoneDigits(trimmedValue)) {
     return PHONE_FORMAT_ERROR_MESSAGE;
   }
 
@@ -279,7 +297,7 @@ export default function BookingForm({ onSuccessAction }: BookingFormProps) {
 
       const payload = {
         name,
-        phone,
+        phone: normalizePhone(phone),
         checkInDate: toYyyyMmDd(checkInDate),
         checkOutDate: toYyyyMmDd(checkOutDate),
         comment: formData.comment,
@@ -411,7 +429,7 @@ export default function BookingForm({ onSuccessAction }: BookingFormProps) {
             name="phone"
             type="tel"
             autoComplete="tel"
-            placeholder="Напишіть свій номер телефону у форматі +xx xxx xxx xx xx"
+            placeholder="Наприклад +38 050 123 45 67 або +48 123 456 789"
             value={formData.phone}
             onChange={handleChange}
             required
@@ -425,7 +443,7 @@ export default function BookingForm({ onSuccessAction }: BookingFormProps) {
             name="phone"
             type="tel"
             autoComplete="tel"
-            placeholder="Напишіть свій номер телефону у форматі +xx xxx xxx xx xx"
+            placeholder="Наприклад +38 050 123 45 67 або +48 123 456 789"
             value={formData.phone}
             onChange={handleChange}
             required
