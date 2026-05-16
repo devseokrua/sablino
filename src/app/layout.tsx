@@ -1,5 +1,6 @@
 ﻿import type { Metadata } from 'next';
 import { Cormorant_Garamond, Manrope } from 'next/font/google';
+import Script from 'next/script';
 import './globals.css';
 
 import Header from '@/components/layout/header/Header';
@@ -64,6 +65,18 @@ export default function RootLayout({
   return (
     <html lang="uk" suppressHydrationWarning>
       <body className={`${cormorant.variable} ${manrope.variable}`}>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-42HDX37NPP"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){window.dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-42HDX37NPP');
+          `}
+        </Script>
         <ThemeProvider>
           <Header />
           {children}
