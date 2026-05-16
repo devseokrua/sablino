@@ -32,6 +32,16 @@ type FieldErrors = {
   dates?: string;
 };
 
+type BookingApiErrorResponse = {
+  error?: string;
+  fieldErrors?: {
+    name?: string[];
+    phone?: string[];
+    checkInDate?: string[];
+    checkOutDate?: string[];
+  };
+};
+
 type BookingFormProps = {
   onSuccessAction?: () => void;
 };
@@ -48,15 +58,17 @@ const GENERIC_ERROR_MESSAGE =
 const RATE_LIMIT_MESSAGE = 'Забагато спроб. Спробуйте ще раз через хвилину.';
 const VALIDATION_ERROR_MESSAGE = 'Перевірте правильність заповнення форми.';
 const NAME_REQUIRED_ERROR_MESSAGE = 'Вкажіть ім’я та прізвище.';
-const NAME_INVALID_ERROR_MESSAGE = 'Вкажіть ім’я та прізвище повністю.';
+const NAME_INVALID_ERROR_MESSAGE =
+  'Вкажіть, будь ласка, ім’я та прізвище. Можна використовувати українські або латинські літери, пробіл, дефіс і апостроф.';
 const PHONE_REQUIRED_ERROR_MESSAGE = 'Вкажіть номер телефону.';
 const PHONE_FORMAT_ERROR_MESSAGE =
-  'Телефон повинен бути написаний у форматі +хх ххх хх хх хх.';
+  'Телефон повинен бути написаний у форматі +xx xxx xxx xx xx.';
 const DATE_RANGE_REQUIRED_ERROR_MESSAGE = 'Оберіть дати заїзду та виїзду.';
 const DATE_RANGE_INCOMPLETE_ERROR_MESSAGE =
   'Оберіть дату заїзду та дату виїзду.';
 const PHONE_ALLOWED_CHARS_PATTERN = /^\+[0-9()\s-]+$/;
 const PHONE_NORMALIZED_PATTERN = /^\+\d{9,15}$/;
+const NAME_PART_PATTERN = /^\p{L}+(?:['’ʼ-]\p{L}+)*$/u;
 
 function pad(value: number): string {
   return String(value).padStart(2, '0');
@@ -99,8 +111,15 @@ function validateName(value: string): string | undefined {
     return NAME_REQUIRED_ERROR_MESSAGE;
   }
 
-  const words = trimmedValue.split(/\s+/).filter(Boolean);
-  if (trimmedValue.length < 5 || words.length < 2) {
+  const parts = trimmedValue.split(/\s+/).filter(Boolean);
+
+  if (parts.length < 2) {
+    return NAME_INVALID_ERROR_MESSAGE;
+  }
+
+  const hasInvalidPart = parts.some((part) => !NAME_PART_PATTERN.test(part));
+
+  if (hasInvalidPart) {
     return NAME_INVALID_ERROR_MESSAGE;
   }
 
@@ -275,9 +294,9 @@ export default function BookingForm({ onSuccessAction }: BookingFormProps) {
         body: JSON.stringify(payload),
       });
 
-      let responseBody: { error?: string } | null = null;
+      let responseBody: BookingApiErrorResponse | null = null;
       try {
-        responseBody = (await response.json()) as { error?: string };
+        responseBody = (await response.json()) as BookingApiErrorResponse;
       } catch {
         responseBody = null;
       }
@@ -301,6 +320,21 @@ export default function BookingForm({ onSuccessAction }: BookingFormProps) {
       }
 
       if (response.status === 400 && responseBody?.error === 'invalid_data') {
+        const apiFieldErrors: FieldErrors = {
+          name: responseBody.fieldErrors?.name?.[0],
+          phone: responseBody.fieldErrors?.phone?.[0],
+          dates:
+            responseBody.fieldErrors?.checkInDate?.[0] ??
+            responseBody.fieldErrors?.checkOutDate?.[0],
+        };
+
+        setFieldErrors(apiFieldErrors);
+
+        if (hasErrors(apiFieldErrors)) {
+          setStatus(null);
+          return;
+        }
+
         setStatus({ type: 'error', message: VALIDATION_ERROR_MESSAGE });
         return;
       }
@@ -377,7 +411,7 @@ export default function BookingForm({ onSuccessAction }: BookingFormProps) {
             name="phone"
             type="tel"
             autoComplete="tel"
-            placeholder="Напишіть свій номер телефону у форматі +хх ххх ххх ххх"
+            placeholder="Напишіть свій номер телефону у форматі +xx xxx xxx xx xx"
             value={formData.phone}
             onChange={handleChange}
             required
@@ -391,7 +425,7 @@ export default function BookingForm({ onSuccessAction }: BookingFormProps) {
             name="phone"
             type="tel"
             autoComplete="tel"
-            placeholder="Напишіть свій номер телефону у форматі +хх ххх ххх хx хх"
+            placeholder="Напишіть свій номер телефону у форматі +xx xxx xxx xx xx"
             value={formData.phone}
             onChange={handleChange}
             required
