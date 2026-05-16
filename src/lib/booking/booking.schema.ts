@@ -1,8 +1,18 @@
 ﻿import { z } from 'zod';
 
-const nameRegex = /^[\p{L}'’ʼ -]+$/u;
+const namePartRegex = /^\p{L}+(?:['’ʼ-]\p{L}+)*$/u;
 const phoneRegex = /^[0-9+()\s./-]+$/;
 const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+
+function isValidFullName(value: string): boolean {
+  const parts = value.trim().split(/\s+/).filter(Boolean);
+
+  if (parts.length < 2) {
+    return false;
+  }
+
+  return parts.every((part) => namePartRegex.test(part));
+}
 
 function hasValidPhoneDigits(value: string): boolean {
   const digits = value.replace(/\D/g, '');
@@ -74,11 +84,11 @@ export const bookingSchema = z
     name: z
       .string()
       .trim()
-      .min(2, 'Ім’я та прізвище має містити щонайменше 2 символи')
+      .min(2, 'Вкажіть, будь ласка, ім’я та прізвище')
       .max(100, 'Ім’я та прізвище не може бути довшим за 100 символів')
-      .regex(
-        nameRegex,
-        'Ім’я та прізвище може містити лише українські або латинські літери, пробіли, апостроф і дефіс'
+      .refine(
+        isValidFullName,
+        'Вкажіть, будь ласка, ім’я та прізвище. Можна використовувати українські або латинські літери, пробіл, дефіс і апостроф.'
       ),
     phone: z
       .string()
