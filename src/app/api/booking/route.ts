@@ -59,6 +59,7 @@ export async function POST(request: Request) {
   } catch (error) {
     if (error instanceof Error) {
       if (error.message === 'Missing Upstash Redis environment variables') {
+        console.error('Booking API misconfigured: missing Upstash Redis variables');
         return NextResponse.json(
           { ok: false, error: 'server_misconfigured' },
           { status: 500 },
@@ -66,6 +67,7 @@ export async function POST(request: Request) {
       }
 
       if (error.message === 'Missing Telegram environment variables') {
+        console.error('Booking API misconfigured: missing Telegram variables');
         return NextResponse.json(
           { ok: false, error: 'server_misconfigured' },
           { status: 500 },
@@ -73,11 +75,14 @@ export async function POST(request: Request) {
       }
 
       if (error.message === 'Telegram sendMessage failed') {
+        console.error('Booking API failed: Telegram sendMessage request failed');
         return NextResponse.json(
           { ok: false, error: 'telegram_failed' },
           { status: 502 },
         );
       }
+
+      console.error('Booking API failed:', error.message);
     }
 
     return NextResponse.json({ ok: false, error: 'server_error' }, { status: 500 });
