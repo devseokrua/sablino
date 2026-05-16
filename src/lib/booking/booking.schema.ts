@@ -2,6 +2,8 @@
 
 const namePartRegex = /^\p{L}+(?:['’ʼ-]\p{L}+)*$/u;
 const phoneRegex = /^[0-9+()\s./-]+$/;
+const phoneUaNormalizedRegex = /^\+380\d{9}$/;
+const phoneInternationalNormalizedRegex = /^\+\d{10,15}$/;
 const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
 
 function isValidFullName(value: string): boolean {
@@ -14,22 +16,22 @@ function isValidFullName(value: string): boolean {
   return parts.every((part) => namePartRegex.test(part));
 }
 
+function normalizePhone(value: string): string {
+  return value.replace(/[()\s./-]/g, '');
+}
+
 function hasValidPhoneDigits(value: string): boolean {
-  const digits = value.replace(/\D/g, '');
+  const normalizedValue = normalizePhone(value);
 
-  if (digits.startsWith('380') && digits.length === 12) {
-    return true;
+  if (!/^\+\d+$/.test(normalizedValue)) {
+    return false;
   }
 
-  if (digits.startsWith('0') && digits.length === 10) {
-    return true;
+  if (normalizedValue.startsWith('+380')) {
+    return phoneUaNormalizedRegex.test(normalizedValue);
   }
 
-  if (digits.length === 9) {
-    return true;
-  }
-
-  return digits.length >= 10 && digits.length <= 15;
+  return phoneInternationalNormalizedRegex.test(normalizedValue);
 }
 
 function isValidCalendarDate(value: string): boolean {
@@ -94,12 +96,16 @@ export const bookingSchema = z
       .string()
       .trim()
       .min(7, 'Номер телефону має містити щонайменше 7 символів')
-      .max(20, 'Номер телефону не може бути довшим за 20 символів')
+      .max(30, 'Номер телефону не може бути довшим за 30 символів')
       .regex(
         phoneRegex,
         'Номер телефону може містити лише цифри, пробіли та символи + - ( ) . /'
       )
-      .refine(hasValidPhoneDigits, 'Вкажіть коректний номер телефону'),
+      .refine(
+        hasValidPhoneDigits,
+        'Телефон повинен бути у міжнародному форматі з +. Для українського номера: +38 050 123 45 67.'
+      )
+      .transform(normalizePhone),
     checkInDate: checkInDateSchema,
     checkOutDate: checkOutDateSchema,
     comment: z
