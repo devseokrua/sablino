@@ -74,7 +74,7 @@ export default function Footer() {
             </nav>
 
             <a
-              href="https://www.alexandroff.pl/"
+              href="https://www.loadingstudio.pl/"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.credit}
