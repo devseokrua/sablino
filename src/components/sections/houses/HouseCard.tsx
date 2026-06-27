@@ -24,6 +24,7 @@ export default function HouseCard({
   buttonLabel,
 }: HouseCardProps) {
   const isGazebo = type === 'gazebo';
+  const [priceLabelMain, priceLabelNote] = priceLabel.split('\n');
 
   return (
     <article id={`house-${slug}`} className={styles.card}>
@@ -79,14 +80,19 @@ export default function HouseCard({
             >
               {priceValue}
             </span>
-            <span
-              className={`${styles.priceLabel} ${
-                isGazebo ? styles.priceLabelCompact : ''
-              }`}
-            >
-              {priceLabel}
-            </span>
+            {priceLabelMain ? (
+              <span
+                className={`${styles.priceLabel} ${
+                  isGazebo ? styles.priceLabelCompact : ''
+                }`}
+              >
+                {priceLabelMain}
+              </span>
+            ) : null}
           </div>
+          {priceLabelNote ? (
+            <p className={styles.priceLabelNote}>{priceLabelNote}</p>
+          ) : null}
           <Button href={`/houses/${slug}`} className={styles.cardButton}>
             {buttonLabel}
           </Button>

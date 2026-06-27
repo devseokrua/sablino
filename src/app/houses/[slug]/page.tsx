@@ -55,6 +55,7 @@ type ExtraGuestPrice = {
 type PeriodPriceItem = {
   label: string;
   value: string;
+  unitNote?: string;
 };
 
 type PriceItem = {
@@ -173,22 +174,16 @@ export default async function HouseDetailsPage({ params }: PageProps) {
               {price?.periodPrices?.length ? (
                 <div className={styles.periodPriceGrid}>
                   {price.periodPrices.map((item) => {
-                    const normalizedMatch = item.value.match(
-                      /^(.*?)(?:\s*)грн\s*\/\s*доба$/i
-                    );
-                    const hasUnit = Boolean(normalizedMatch);
-                    const amount = hasUnit
-                      ? (normalizedMatch?.[1].trim() ?? item.value)
-                      : item.value;
-
                     return (
                       <div key={item.label} className={styles.periodPriceCard}>
                         <div className={styles.periodPriceValueRow}>
-                          <p className={styles.periodPriceValue}>{amount}</p>
-                          {hasUnit ? (
-                            <p className={styles.periodPriceUnit}>грн/доба</p>
-                          ) : null}
+                          <p className={styles.periodPriceValue}>{item.value}</p>
                         </div>
+                        {item.unitNote ? (
+                          <p className={styles.periodPriceUnit}>
+                            {item.unitNote}
+                          </p>
+                        ) : null}
                         <p className={styles.periodPriceLabel}>
                           {item.label.toLowerCase()}
                         </p>

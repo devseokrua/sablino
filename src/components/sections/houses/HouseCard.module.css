@@ -146,6 +146,15 @@
   white-space: normal;
 }
 
+.priceLabelNote {
+  margin: -4px 0 0;
+  color: var(--color-accent-strong);
+  font-family: var(--font-body);
+  font-size: var(--font-size-xs);
+  line-height: 1.1;
+  text-align: center;
+}
+
 .cardButton {
   width: 100%;
   max-width: 240px;

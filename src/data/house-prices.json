@@ -62,30 +62,34 @@
     },
     "altanka-velyka": {
       "value": "600–900",
-      "label": "грн/доба",
+      "label": "\nгрн / світловий день",
       "periodPrices": [
         {
           "label": "Будні дні",
-          "value": "600 грн/доба"
+          "value": "600",
+          "unitNote": "грн / світловий день"
         },
         {
           "label": "Вихідні дні",
-          "value": "900 грн/доба"
+          "value": "900",
+          "unitNote": "грн / світловий день"
         }
       ],
       "draft": true
     },
     "altanky-mali": {
       "value": "400–600",
-      "label": "грн/доба",
+      "label": "\nгрн / світловий день",
       "periodPrices": [
         {
           "label": "Будні дні",
-          "value": "400 грн/доба"
+          "value": "400",
+          "unitNote": "грн / світловий день"
         },
         {
           "label": "Вихідні дні",
-          "value": "600 грн/доба"
+          "value": "600",
+          "unitNote": "грн / світловий день"
         }
       ],
       "draft": true
